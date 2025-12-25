@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     images: ['/static/images/logo.jpg'],
   },
   icons: {
-    icon: '/static/images/logo.jpg',
-    apple: '/static/images/logo.jpg',
+    icon: '/static/images/logo-transparent.png',
+    apple: '/static/images/logo-transparent.png',
   },
 }
 
