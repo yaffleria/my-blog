@@ -34,7 +34,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "reading-time": "1.5.0",
-    "recharts": "^2.15.0",
+    "recharts": "^2.15.4",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-citation": "^2.3.0",
     "rehype-katex": "^7.0.0",
