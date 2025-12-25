@@ -7,6 +7,7 @@ import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
 import PieChart from './PieChart'
 import Tweet from './Tweet'
+import YouTube from './YouTube'
 
 export const components: MDXComponents = {
   Image,
@@ -16,5 +17,6 @@ export const components: MDXComponents = {
   table: TableWrapper,
   PieChart,
   Tweet,
+  YouTube,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }
