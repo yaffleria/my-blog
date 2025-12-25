@@ -1,7 +1,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: '비밀의포도원',
-  author: '작성자',
+  author: '포도원지기',
   headerTitle: '비밀의포도원',
   description: '비밀의 포도원에서 가꾸는 투자의 결실, 그리고 일상의 향기',
   language: 'ko-kr',
@@ -40,11 +40,12 @@ const siteMetadata = {
     //   googleAnalyticsId: '', // e.g. G-XXXXXXX
     // },
   },
-  newsletter: {
-    // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive
-    // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
-  },
+  // Newsletter 기능 비활성화 - API 연동 필요
+  // newsletter: {
+  //   // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive
+  //   // Please add your .env file and modify it according to your selection
+  //   provider: 'buttondown',
+  // },
   comments: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
