@@ -1,13 +1,13 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: '블로그',
+  title: '비밀의포도원',
   author: '작성자',
-  headerTitle: '블로그',
-  description: 'Next.js와 Tailwind CSS로 만든 블로그입니다',
+  headerTitle: '비밀의포도원',
+  description: '비밀의 포도원에서 가꾸는 투자의 결실, 그리고 일상의 향기',
   language: 'ko-kr',
   theme: 'system', // system, dark or light
   siteUrl: 'https://your-blog.com',
-  siteRepo: 'https://github.com/your-username/your-blog',
+  siteRepo: 'https://github.com/yaffleria/nenyaffle',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: 'yaffleria@gmail.com',
