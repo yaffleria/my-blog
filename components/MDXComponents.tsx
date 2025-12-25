@@ -6,7 +6,6 @@ import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
 import PieChart from './PieChart'
-import KakaoMapEmbed from './KakaoMapEmbed'
 
 export const components: MDXComponents = {
   Image,
@@ -15,6 +14,5 @@ export const components: MDXComponents = {
   pre: Pre,
   table: TableWrapper,
   PieChart,
-  KakaoMapEmbed,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }
