@@ -27,6 +27,8 @@ export const metadata: Metadata = {
     template: `%s | ${siteMetadata.title}`,
   },
   description: siteMetadata.description,
+  keywords: ['경제', '투자', '주식', '일상', '식당', '레스토랑', '카페'],
+  manifest: '/manifest.json',
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
@@ -74,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body className="bg-white pl-[calc(100vw-100%)] break-keep text-black antialiased dark:bg-gray-950 dark:text-white">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <VercelAnalytics />
