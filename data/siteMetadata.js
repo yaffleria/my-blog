@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: '비밀의포도원',
   description: '비밀의 포도원에서 가꾸는 투자의 결실, 그리고 일상의 향기',
   language: 'ko-KR',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://www.yaffleria.com',
   siteRepo: 'https://github.com/yaffleria/nenyaffle',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
