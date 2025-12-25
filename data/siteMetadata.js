@@ -8,8 +8,8 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://www.yaffleria.com',
   siteRepo: 'https://github.com/yaffleria/nenyaffle',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
+  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
   email: 'yaffleria@gmail.com',
   github: 'https://github.com/yaffleria',
   x: 'https://x.com/nenyacat',
