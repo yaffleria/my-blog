@@ -26,9 +26,6 @@ export default function Footer() {
           <div>{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          투자의 결실과 일상의 향기를 기록하는 공간
-        </div>
       </div>
     </footer>
   )
