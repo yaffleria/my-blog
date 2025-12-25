@@ -35,114 +35,131 @@ interface PieChartProps {
 
 const RADIAN = Math.PI / 180
 
-const renderInnerLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-}: {
-  cx: number
-  cy: number
-  midAngle: number
-  innerRadius: number
-  outerRadius: number
-  percent: number
+const PieChart: React.FC<PieChartProps> = ({
+  data,
+  outerRadius: propsOuterRadius = 130,
+  innerRadius = 0,
+  title,
 }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5
-  const x = cx + radius * Math.cos(-midAngle * RADIAN)
-  const y = cy + radius * Math.sin(-midAngle * RADIAN)
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor="middle"
-      dominantBaseline="central"
-      className="text-xs font-bold"
-      style={{ textShadow: '0px 0px 3px rgba(0,0,0,0.5)' }}
-    >
-      {`${(percent * 100).toFixed(1)}%`}
-    </text>
-  )
-}
-
-const renderOuterLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  name,
-}: {
-  cx: number
-  cy: number
-  midAngle: number
-  innerRadius: number
-  outerRadius: number
-  name: string
-}) => {
-  const RADIAN = Math.PI / 180
-  const radius = outerRadius * 1.15
-  const x = cx + radius * Math.cos(-midAngle * RADIAN)
-  const y = cy + radius * Math.sin(-midAngle * RADIAN)
-
-  // Calculate coordinates for the leader line (인출선)
-  const lineStartRadius = outerRadius
-  const lineEndRadius = outerRadius * 1.12
-
-  const sx = cx + lineStartRadius * Math.cos(-midAngle * RADIAN)
-  const sy = cy + lineStartRadius * Math.sin(-midAngle * RADIAN)
-
-  const ex = cx + lineEndRadius * Math.cos(-midAngle * RADIAN)
-  const ey = cy + lineEndRadius * Math.sin(-midAngle * RADIAN)
-
-  return (
-    <g>
-      <path
-        d={`M${sx},${sy}L${ex},${ey}`}
-        stroke="#9ca3af" // Gray-400 equivalent for visibility in both modes (or customize as needed)
-        fill="none"
-      />
-      <text
-        x={x}
-        y={y}
-        fill="#374151"
-        textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline="central"
-        className="text-sm font-medium dark:fill-gray-300"
-      >
-        {name}
-      </text>
-    </g>
-  )
-}
-
-const PieChart: React.FC<PieChartProps> = ({ data, outerRadius = 130, innerRadius = 0, title }) => {
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Adjust radius and height for mobile
+  // On mobile, names can be long, so we need extra space for labels
+  const effectiveOuterRadius = isMobile ? 80 : propsOuterRadius
+  const containerHeight = isMobile ? 350 : 450
+
+  const renderInnerLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+  }: {
+    cx: number
+    cy: number
+    midAngle: number
+    innerRadius: number
+    outerRadius: number
+    percent: number
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5
+    const x = cx + radius * Math.cos(-midAngle * RADIAN)
+    const y = cy + radius * Math.sin(-midAngle * RADIAN)
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor="middle"
+        dominantBaseline="central"
+        className={isMobile ? 'text-[10px] font-bold' : 'text-xs font-bold'}
+        style={{ textShadow: '0px 0px 3px rgba(0,0,0,0.5)' }}
+      >
+        {`${(percent * 100).toFixed(1)}%`}
+      </text>
+    )
+  }
+
+  const renderOuterLabel = ({
+    cx,
+    cy,
+    midAngle,
+    outerRadius,
+    name,
+  }: {
+    cx: number
+    cy: number
+    midAngle: number
+    outerRadius: number
+    name: string
+  }) => {
+    const radius = outerRadius * (isMobile ? 1.12 : 1.15)
+    const x = cx + radius * Math.cos(-midAngle * RADIAN)
+    const y = cy + radius * Math.sin(-midAngle * RADIAN)
+
+    const lineStartRadius = outerRadius
+    const lineEndRadius = outerRadius * (isMobile ? 1.08 : 1.12)
+
+    const sx = cx + lineStartRadius * Math.cos(-midAngle * RADIAN)
+    const sy = cy + lineStartRadius * Math.sin(-midAngle * RADIAN)
+
+    const ex = cx + lineEndRadius * Math.cos(-midAngle * RADIAN)
+    const ey = cy + lineEndRadius * Math.sin(-midAngle * RADIAN)
+
+    return (
+      <g>
+        <path d={`M${sx},${sy}L${ex},${ey}`} stroke="#9ca3af" fill="none" strokeWidth={1} />
+        <text
+          x={x}
+          y={y}
+          fill="#374151"
+          textAnchor={x > cx ? 'start' : 'end'}
+          dominantBaseline="central"
+          className={`${isMobile ? 'text-[11px]' : 'text-sm'} font-medium dark:fill-gray-300`}
+        >
+          {name}
+        </text>
+      </g>
+    )
+  }
 
   if (!mounted) {
     return (
-      <div className="flex flex-col items-center justify-center p-4">
-        {title && <h3 className="mb-4 text-lg font-bold">{title}</h3>}
+      <div className="my-8 flex flex-col items-center justify-center p-4">
+        {title && (
+          <h3 className="mb-6 text-center text-xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+        )}
         <div
-          style={{ width: '100%', height: 450 }}
-          className="rounded-lg bg-gray-200 dark:bg-gray-700"
+          style={{ width: '100%', height: containerHeight }}
+          className="rounded-xl bg-gray-50 dark:bg-gray-800/50"
         />
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      {title && <h3 className="mb-4 text-lg font-bold">{title}</h3>}
-      <div style={{ width: '100%', height: 450 }}>
+    <div className="my-10 flex flex-col items-center justify-center rounded-2xl bg-white/50 p-6 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm dark:bg-gray-900/50 dark:ring-gray-800">
+      {title && (
+        <h3 className="mb-8 text-center text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          {title}
+        </h3>
+      )}
+      <div style={{ width: '100%', height: containerHeight }}>
         <ResponsiveContainer width="100%" height="100%">
           <RechartsPieChart>
             {/* Main Pie with Colors and Inner Percentage */}
@@ -153,15 +170,21 @@ const PieChart: React.FC<PieChartProps> = ({ data, outerRadius = 130, innerRadiu
               startAngle={90}
               endAngle={-270}
               labelLine={false}
-              outerRadius={outerRadius}
+              outerRadius={effectiveOuterRadius}
               innerRadius={innerRadius}
               fill="#8884d8"
               dataKey="value"
               label={renderInnerLabel}
-              isAnimationActive={false}
+              isAnimationActive={mounted}
+              animationDuration={1000}
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                  stroke="rgba(255,255,255,0.2)"
+                  strokeWidth={2}
+                />
               ))}
             </Pie>
 
@@ -172,8 +195,8 @@ const PieChart: React.FC<PieChartProps> = ({ data, outerRadius = 130, innerRadiu
               cy="50%"
               startAngle={90}
               endAngle={-270}
-              outerRadius={outerRadius}
-              innerRadius={outerRadius - 1}
+              outerRadius={effectiveOuterRadius}
+              innerRadius={effectiveOuterRadius - 1}
               fill="none"
               stroke="none"
               dataKey="value"
@@ -182,7 +205,18 @@ const PieChart: React.FC<PieChartProps> = ({ data, outerRadius = 130, innerRadiu
               isAnimationActive={false}
             />
 
-            <Tooltip formatter={(value: number) => value.toLocaleString()} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.98)',
+                borderRadius: '12px',
+                border: 'none',
+                boxShadow:
+                  '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                padding: '12px',
+              }}
+              itemStyle={{ fontWeight: '600', color: '#111827' }}
+              formatter={(value: number) => [`${value.toFixed(1)}%`, 'Portion']}
+            />
           </RechartsPieChart>
         </ResponsiveContainer>
       </div>
