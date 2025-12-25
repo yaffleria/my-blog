@@ -56,7 +56,7 @@ export async function generateMetadata(props: {
       title: post.title,
       description: post.summary,
       siteName: siteMetadata.title,
-      locale: 'en_US',
+      locale: post.language === 'ko' ? 'ko_KR' : 'en_US',
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
@@ -69,6 +69,11 @@ export async function generateMetadata(props: {
       title: post.title,
       description: post.summary,
       images: imageList,
+    },
+    alternates: {
+      languages: {
+        [post.language || 'en']: './',
+      },
     },
   }
 }
