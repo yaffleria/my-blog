@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
-    images: [siteMetadata.socialBanner],
+    images: ['/static/images/logo.jpg'],
     locale: 'ko_KR',
     type: 'website',
   },
@@ -54,7 +54,11 @@ export const metadata: Metadata = {
   twitter: {
     title: siteMetadata.title,
     card: 'summary_large_image',
-    images: [siteMetadata.socialBanner],
+    images: ['/static/images/logo.jpg'],
+  },
+  icons: {
+    icon: '/static/images/logo.jpg',
+    apple: '/static/images/logo.jpg',
   },
 }
 
