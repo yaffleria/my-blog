@@ -9,7 +9,8 @@
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
@@ -33,6 +34,7 @@
     "postcss": "^8.4.24",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-tweet": "^3.3.0",
     "reading-time": "1.5.0",
     "recharts": "^2.15.4",
     "rehype-autolink-headings": "^7.1.0",
