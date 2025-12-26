@@ -406,7 +406,6 @@ export default async function KRXGoldPremiumPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <AutoRefresh />
-      {/* @ts-expect-error Async Server Component data passing */}
       <GoldClientPage goldData={result} />
     </>
   )
