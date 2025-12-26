@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
-import { Coins } from 'lucide-react'
+import { Gem } from 'lucide-react'
 
 export const metadata = genPageMetadata({ title: 'Tools' })
 
@@ -9,7 +9,8 @@ const tools = [
     title: 'KRX 금 시세 프리미엄 계산기',
     description: 'KRX 금 시세와 국제 금 시세를 비교하여 프리미엄을 확인합니다',
     href: '/tools/krx-gold-premium',
-    icon: Coins,
+    icon: Gem,
+    color: 'text-yellow-500 dark:text-yellow-400',
   },
 ]
 
@@ -36,7 +37,13 @@ export default function ToolsPage() {
                 <h2 className="group-hover:text-primary-500 dark:group-hover:text-primary-400 text-xl font-bold text-gray-900 dark:text-gray-100">
                   {tool.title}
                 </h2>
-                <tool.icon className="group-hover:text-primary-500 dark:group-hover:text-primary-400 h-8 w-8 text-gray-500 transition-colors dark:text-gray-400" />
+                <tool.icon
+                  className={`h-8 w-8 transition-colors ${
+                    tool.color
+                      ? tool.color
+                      : 'group-hover:text-primary-500 dark:group-hover:text-primary-400 text-gray-500 dark:text-gray-400'
+                  }`}
+                />
               </div>
               <p className="text-gray-600 dark:text-gray-400">{tool.description}</p>
             </Link>

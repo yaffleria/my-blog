@@ -63,7 +63,7 @@ export default function GoldClientPage({ goldData }: { goldData: GoldData }) {
           <div className="flex rounded-full bg-gray-100 p-1 dark:bg-gray-800">
             <button
               onClick={() => setUnit('don')}
-              className={`rounded-full px-4 py-1 text-sm font-medium transition-all ${
+              className={`cursor-pointer rounded-full px-4 py-1 text-sm font-medium transition-all ${
                 isDon
                   ? 'bg-white text-gray-900 shadow-xs dark:bg-gray-700 dark:text-gray-100'
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'
@@ -73,7 +73,7 @@ export default function GoldClientPage({ goldData }: { goldData: GoldData }) {
             </button>
             <button
               onClick={() => setUnit('gram')}
-              className={`rounded-full px-4 py-1 text-sm font-medium transition-all ${
+              className={`cursor-pointer rounded-full px-4 py-1 text-sm font-medium transition-all ${
                 !isDon
                   ? 'bg-white text-gray-900 shadow-xs dark:bg-gray-700 dark:text-gray-100'
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'
