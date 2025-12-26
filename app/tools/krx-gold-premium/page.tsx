@@ -22,17 +22,14 @@ export const metadata = genPageMetadata({
     title: 'KRX 금 시세 프리미엄 계산기 - 실시간 조회',
     description: '한국 금값이 국제 시세보다 얼마나 비쌀까요? KRX vs 국제 금 시세 실시간 비교 분석.',
     type: 'website',
-    images: ['/static/images/gold-premium-og.png'], // You might want to create/add this image later
+    images: ['/static/images/logo.jpg'],
   },
 })
 
 // ISR: 30분마다 재검증
 export const revalidate = 1800
 
-const DATA_GO_KR_API_KEY =
-  process.env.DATA_GO_KR_API_KEY ||
-  process.env.FSC_API_KEY ||
-  '76a2ae35ca325cdf8cb9f1503bc124362a17e0a92cfee79a4d577ca87b71f098'
+const DATA_GO_KR_API_KEY = process.env.DATA_GO_KR_API_KEY || process.env.FSC_API_KEY || ''
 
 const DON_TO_GRAM = 3.75
 const TROY_OUNCE_TO_GRAM = 31.1035

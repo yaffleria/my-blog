@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const DATA_GO_KR_API_KEY =
-  process.env.DATA_GO_KR_API_KEY ||
-  process.env.FSC_API_KEY ||
-  '76a2ae35ca325cdf8cb9f1503bc124362a17e0a92cfee79a4d577ca87b71f098'
+const DATA_GO_KR_API_KEY = process.env.DATA_GO_KR_API_KEY || process.env.FSC_API_KEY || ''
 
 // 금융위원회 일반상품시세정보 API
 const KRX_API_BASE = 'https://apis.data.go.kr/1160100/service/GetGeneralProductInfoService'
