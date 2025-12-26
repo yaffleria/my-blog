@@ -17,6 +17,9 @@ import MarketSegmentationChart from './charts/MarketSegmentationChart'
 import AnnualGuidanceChart from './charts/AnnualGuidanceChart'
 import Q3MetricsToggle from './kraken-robotics-2025-q3-earnings/Q3MetricsToggle'
 import RelatedArticles from './RelatedArticles'
+import MastercardRevenueBreakdown from './mastercard-2025-q3-earnings/MastercardRevenueBreakdown'
+import MarketShareChart from './mastercard-2025-q3-earnings/MarketShareChart'
+import GrowthMetricsChart from './mastercard-2025-q3-earnings/GrowthMetricsChart'
 
 export const components: MDXComponents = {
   Image,
@@ -36,5 +39,8 @@ export const components: MDXComponents = {
   AnnualGuidanceChart,
   Q3MetricsToggle,
   RelatedArticles,
+  MastercardRevenueBreakdown,
+  MarketShareChart,
+  GrowthMetricsChart,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }
