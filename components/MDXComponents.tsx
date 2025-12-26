@@ -20,6 +20,10 @@ import RelatedArticles from './RelatedArticles'
 import MastercardRevenueBreakdown from './mastercard-2025-q3-earnings/MastercardRevenueBreakdown'
 import MarketShareChart from './mastercard-2025-q3-earnings/MarketShareChart'
 import GrowthMetricsChart from './mastercard-2025-q3-earnings/GrowthMetricsChart'
+import RichGrowthChart from './kb-wealth-report-2025/RichGrowthChart'
+import AssetPortfolioChart from './kb-wealth-report-2025/AssetPortfolioChart'
+import WealthSourceChart from './kb-wealth-report-2025/WealthSourceChart'
+import RichGeographyChart from './kb-wealth-report-2025/RichGeographyChart'
 
 export const components: MDXComponents = {
   Image,
@@ -42,5 +46,9 @@ export const components: MDXComponents = {
   MastercardRevenueBreakdown,
   MarketShareChart,
   GrowthMetricsChart,
+  RichGrowthChart,
+  AssetPortfolioChart,
+  WealthSourceChart,
+  RichGeographyChart,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }
