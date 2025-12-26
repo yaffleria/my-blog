@@ -1,17 +1,17 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: '비밀의포도원',
-  author: '포도원지기',
-  headerTitle: '비밀의포도원',
-  description: '비밀의 포도원에서 가꾸는 투자의 결실, 그리고 일상의 향기',
+  title: 'NenyaCastle',
+  author: 'NenyaCat',
+  headerTitle: 'NenyaCastle - 지식의 성채',
+  description: '고양이 네냐가 지키는 신비로운 성에서 전하는 투자 인사이트와 기술 이야기',
   language: 'ko-KR',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://www.yaffleria.com',
   siteRepo: 'https://github.com/yaffleria/nenyaffle',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
-  email: 'yaffleria@gmail.com',
-  github: 'https://github.com/yaffleria',
+  // email: 'yaffleria@gmail.com', // 비활성화: 개인정보 최소화
+  // github: 'https://github.com/yaffleria', // 비활성화: 개인정보 최소화
   x: 'https://x.com/nenyacat',
   locale: 'ko-KR',
   // set to true if you want a navbar fixed to the top

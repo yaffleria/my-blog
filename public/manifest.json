@@ -1,7 +1,7 @@
 {
-  "name": "비밀의포도원",
-  "short_name": "비밀의포도원",
-  "description": "비밀의 포도원에서 가꾸는 투자의 결실, 그리고 일상의 향기",
+  "name": "NenyaCastle",
+  "short_name": "NenyaCastle",
+  "description": "고양이 네냐가 지키는 신비로운 성에서 전하는 투자 인사이트와 기술 이야기",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

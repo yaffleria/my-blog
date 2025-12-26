@@ -1,1 +1,3 @@
-# This is my blog.
+# NenyaCastle
+
+고양이 네냐가 지키는 신비로운 성에서 전하는 투자 인사이트와 기술 이야기
