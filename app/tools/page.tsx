@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
-import { Gem } from 'lucide-react'
+import { Stone } from 'lucide-react'
 
 export const metadata = genPageMetadata({ title: 'Tools' })
 
@@ -9,7 +9,7 @@ const tools = [
     title: 'KRX 금 시세 프리미엄 계산기',
     description: 'KRX 금 시세와 국제 금 시세를 비교하여 프리미엄을 확인합니다',
     href: '/tools/krx-gold-premium',
-    icon: Gem,
+    icon: Stone,
     color: 'text-yellow-500 dark:text-yellow-400',
   },
 ]

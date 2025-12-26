@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export const DON_TO_GRAM = 3.75
 
@@ -27,6 +27,16 @@ const formatCurrency = (value: number) => {
 
 export default function GoldClientPage({ goldData }: { goldData: GoldData }) {
   const [unit, setUnit] = useState<'don' | 'gram'>('don')
+  const [formattedTime, setFormattedTime] = useState<string>('')
+
+  useEffect(() => {
+    setFormattedTime(
+      new Date(goldData.lastUpdated).toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    )
+  }, [goldData.lastUpdated])
 
   const isDon = unit === 'don'
 
@@ -161,13 +171,7 @@ export default function GoldClientPage({ goldData }: { goldData: GoldData }) {
       <div className="px-6 text-xs text-gray-400 dark:text-gray-500">
         <div className="mb-6 flex justify-between border-t border-gray-100 pt-4 dark:border-gray-800">
           <span>갱신 주기: 30분</span>
-          <span>
-            최근 업데이트:{' '}
-            {new Date(goldData.lastUpdated).toLocaleTimeString('ko-KR', {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
-          </span>
+          <span>최근 업데이트: {formattedTime}</span>
         </div>
 
         <div className="space-y-1 text-center">
