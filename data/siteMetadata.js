@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'NenyaCastle',
   author: 'NenyaCat',
-  headerTitle: 'NenyaCastle - 지식의 성채',
+  headerTitle: 'NenyaCastle',
   description: '고양이 네냐가 지키는 신비로운 성에서 전하는 투자 인사이트와 기술 이야기',
   language: 'ko-KR',
   theme: 'dark', // system, dark or light
