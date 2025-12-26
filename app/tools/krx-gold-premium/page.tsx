@@ -3,7 +3,7 @@ import { genPageMetadata } from 'app/seo'
 export const metadata = genPageMetadata({
   title: 'KRX 금 시세 프리미엄 계산기 | 실시간 한국 vs 국제 금값 비교',
   description:
-    '한국거래소(KRX) 금 시장의 시세와 국제 금 시세를 실시간으로 비교하여 한국 금값의 프리미엄(김치 프리미엄)을 확인하세요. 1g 및 1돈(3.75g) 단위 가격 정보와 환율 정보를 제공합니다.',
+    '한국거래소(KRX) 금 시장의 시세와 국제 금 시세를 실시간으로 비교하여 한국 금값의 프리미엄(김치프리미엄, 김프)을 확인하세요. 1g 및 1돈(3.75g) 단위 가격 정보와 환율 정보를 제공합니다.',
   keywords: [
     '금 시세',
     '금값',
@@ -17,10 +17,14 @@ export const metadata = genPageMetadata({
     '1g 가격',
     '금 투자',
     '환율',
+    '김치프리미엄',
+    '김프',
+    '김치 프리미엄',
   ],
   openGraph: {
-    title: 'KRX 금 시세 프리미엄 계산기 - 실시간 조회',
-    description: '한국 금값이 국제 시세보다 얼마나 비쌀까요? KRX vs 국제 금 시세 실시간 비교 분석.',
+    title: 'KRX 금 시세 프리미엄 계산기 - 실시간 조회 (김프/김치프리미엄)',
+    description:
+      '한국 금값이 국제 시세보다 얼마나 비쌀까요? KRX vs 국제 금 시세 실시간 비교 분석 (김프 확인).',
     type: 'website',
     images: ['/static/images/logo.jpg'],
   },

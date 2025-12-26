@@ -8,8 +8,8 @@ export default function GoldInfoSection() {
           KRX 금시장과 프리미엄 가이드
         </h2>
         <p className="text-gray-600 dark:text-gray-400">
-          대한민국 대표 금 거래 시장인 KRX 금시장의 특징과, 국제 시세와의 가격 차이(프리미엄)가
-          발생하는 이유를 알아보세요. 현명한 금 투자를 위한 필수 정보입니다.
+          대한민국 대표 금 거래 시장인 KRX 금시장의 특징과, 국제 시세와의 가격 차이가 발생하는
+          이유를 알아보세요. 현명한 금 투자를 위한 필수 정보입니다.
         </p>
       </div>
 
@@ -51,7 +51,7 @@ export default function GoldInfoSection() {
 
         <div className="rounded-2xl bg-gray-50 p-6 dark:bg-gray-800/50">
           <h3 className="mb-3 text-lg font-bold text-gray-900 dark:text-gray-100">
-            📊 김치 프리미엄이란?
+            📊 김치프리미엄(김프)이란?
           </h3>
           <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
             국내 금 시세가 국제 금 시세(환율 적용)보다 높거나 낮은 현상을 말합니다.
