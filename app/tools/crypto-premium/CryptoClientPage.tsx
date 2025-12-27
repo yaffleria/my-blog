@@ -20,6 +20,9 @@ interface CryptoData {
   exchangeRate: number
   lastUpdated: string
   error?: string
+  btcSource?: string
+  koreaSource?: string
+  exchangeRateSource?: string
 }
 
 export default function CryptoClientPage({
@@ -56,8 +59,8 @@ export default function CryptoClientPage({
         subtitle="Binance vs Korbit 시세 비교"
         data={dashboardData}
         unitLabel={isBtc ? '1 BTC' : '1 USDT'}
-        baseSourceLabel="Korbit"
-        intlSourceLabel={isBtc ? 'Binance' : '환율 (1 USD)'}
+        baseSourceLabel={initialData.koreaSource || 'Korbit'}
+        intlSourceLabel={isBtc ? initialData.btcSource || 'Binance' : '환율 (1 USD)'}
         baseCurrency="KRW"
         // Custom International Price Display
         customIntlPrice={

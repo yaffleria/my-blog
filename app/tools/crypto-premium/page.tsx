@@ -21,9 +21,12 @@ interface CryptoData {
   exchangeRate: number
   lastUpdated: string
   error?: string
+  btcSource?: string
+  koreaSource?: string
+  exchangeRateSource?: string
 }
 
-async function getGlobalBtcPrice(): Promise<number | null> {
+async function getGlobalBtcPrice(): Promise<{ price: number; source: string } | null> {
   // 1. Try Binance
   try {
     const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', {
@@ -31,7 +34,8 @@ async function getGlobalBtcPrice(): Promise<number | null> {
     })
     if (res.ok) {
       const data = await res.json()
-      return parseFloat(data.price)
+      console.log('✅ [CryptoData] Global Price: Binance Success')
+      return { price: parseFloat(data.price), source: 'Binance' }
     }
   } catch (e) {
     console.error('Binance fetch error:', e)
@@ -47,7 +51,8 @@ async function getGlobalBtcPrice(): Promise<number | null> {
     )
     if (res.ok) {
       const data = await res.json()
-      return data.bitcoin.usd
+      console.log('✅ [CryptoData] Global Price: CoinGecko Success')
+      return { price: data.bitcoin.usd, source: 'CoinGecko' }
     }
   } catch (e) {
     console.error('CoinGecko fetch error:', e)
@@ -56,7 +61,11 @@ async function getGlobalBtcPrice(): Promise<number | null> {
   return null
 }
 
-async function getKoreaTickers(): Promise<{ btc: number; usdt: number } | null> {
+async function getKoreaTickers(): Promise<{
+  btc: number
+  usdt: number
+  source: string
+} | null> {
   return (await getKorbitTickers()) || (await getUpbitTickers())
 }
 
@@ -70,7 +79,11 @@ interface UpbitTicker {
   trade_price: number
 }
 
-async function getKorbitTickers(): Promise<{ btc: number; usdt: number } | null> {
+async function getKorbitTickers(): Promise<{
+  btc: number
+  usdt: number
+  source: string
+} | null> {
   try {
     const res = await fetch('https://api.korbit.co.kr/v2/tickers?symbol=btc_krw,usdt_krw', {
       next: { revalidate: 30 },
@@ -84,9 +97,11 @@ async function getKorbitTickers(): Promise<{ btc: number; usdt: number } | null>
     const btcTicker = data.find((item: KorbitTicker) => item.symbol === 'btc_krw')
     const usdtTicker = data.find((item: KorbitTicker) => item.symbol === 'usdt_krw')
 
+    console.log('✅ [CryptoData] Korea Price: Korbit Success')
     return {
       btc: btcTicker ? parseFloat(btcTicker.close) : 0,
       usdt: usdtTicker ? parseFloat(usdtTicker.close) : 0,
+      source: 'Korbit',
     }
   } catch (e) {
     console.error('Korbit fetch error:', e)
@@ -94,7 +109,11 @@ async function getKorbitTickers(): Promise<{ btc: number; usdt: number } | null>
   }
 }
 
-async function getUpbitTickers(): Promise<{ btc: number; usdt: number } | null> {
+async function getUpbitTickers(): Promise<{
+  btc: number
+  usdt: number
+  source: string
+} | null> {
   try {
     const res = await fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-USDT', {
       next: { revalidate: 30 },
@@ -105,9 +124,11 @@ async function getUpbitTickers(): Promise<{ btc: number; usdt: number } | null> 
     const btcTicker = data.find((item: UpbitTicker) => item.market === 'KRW-BTC')
     const usdtTicker = data.find((item: UpbitTicker) => item.market === 'KRW-USDT')
 
+    console.log('✅ [CryptoData] Korea Price: Upbit Success')
     return {
       btc: btcTicker ? btcTicker.trade_price : 0,
       usdt: usdtTicker ? usdtTicker.trade_price : 0,
+      source: 'Upbit',
     }
   } catch (e) {
     console.error('Upbit fetch error:', e)
@@ -142,7 +163,7 @@ async function getCryptoData(): Promise<CryptoData | { error: string }> {
 
   // BTC Calculation
   const btcKrw = koreaData!.btc
-  const btcUsd = globalBtc!
+  const btcUsd = globalBtc!.price
   const btcExchanged = btcUsd * exchangeRate!
   const btcPremium = btcKrw - btcExchanged
   const btcPremiumPercent = (btcKrw / btcExchanged - 1) * 100
@@ -157,6 +178,9 @@ async function getCryptoData(): Promise<CryptoData | { error: string }> {
 
   return {
     exchangeRate: exchangeRate!,
+    exchangeRateSource: 'Frankfurter/OpenER', // Simplified for now as exchangeRate.ts doesn't return source yet
+    btcSource: globalBtc!.source,
+    koreaSource: koreaData!.source,
     lastUpdated: new Date().toISOString(),
     btc: {
       krwPrice: btcKrw,

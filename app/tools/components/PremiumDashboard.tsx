@@ -100,10 +100,16 @@ export default function PremiumDashboard({
     ? 'border-red-100 dark:border-red-800'
     : 'border-blue-100 dark:border-blue-800'
 
-  const formattedTime = new Date(lastUpdated).toLocaleTimeString('ko-KR', {
-    hour: '2-digit',
-    minute: '2-digit',
-  })
+  const [formattedTime, setFormattedTime] = React.useState('')
+
+  React.useEffect(() => {
+    setFormattedTime(
+      new Date(lastUpdated).toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    )
+  }, [lastUpdated])
 
   return (
     <div className="mx-auto max-w-md px-0 py-6 sm:py-10">
