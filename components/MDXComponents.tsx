@@ -24,6 +24,9 @@ import RichGrowthChart from './kb-wealth-report-2025/RichGrowthChart'
 import AssetPortfolioChart from './kb-wealth-report-2025/AssetPortfolioChart'
 import WealthSourceChart from './kb-wealth-report-2025/WealthSourceChart'
 import RichGeographyChart from './kb-wealth-report-2025/RichGeographyChart'
+import CopperDemandChart from './copper-analysis/CopperDemandChart'
+import CopperPriceForecastChart from './copper-analysis/CopperPriceForecastChart'
+import CopperSupplyDeficitChart from './copper-analysis/CopperSupplyDeficitChart'
 
 export const components: MDXComponents = {
   Image,
@@ -50,5 +53,8 @@ export const components: MDXComponents = {
   AssetPortfolioChart,
   WealthSourceChart,
   RichGeographyChart,
+  CopperDemandChart,
+  CopperPriceForecastChart,
+  CopperSupplyDeficitChart,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }
