@@ -23,18 +23,51 @@ interface CryptoData {
   error?: string
 }
 
-async function getBinancePrice(): Promise<number | null> {
+async function getGlobalBtcPrice(): Promise<number | null> {
+  // 1. Try Binance
   try {
     const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', {
       next: { revalidate: 30 },
     })
-    if (!res.ok) return null
-    const data = await res.json()
-    return parseFloat(data.price)
+    if (res.ok) {
+      const data = await res.json()
+      return parseFloat(data.price)
+    }
   } catch (e) {
     console.error('Binance fetch error:', e)
-    return null
   }
+
+  // 2. Fallback to CoinGecko
+  try {
+    const res = await fetch(
+      'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
+      {
+        next: { revalidate: 30 },
+      }
+    )
+    if (res.ok) {
+      const data = await res.json()
+      return data.bitcoin.usd
+    }
+  } catch (e) {
+    console.error('CoinGecko fetch error:', e)
+  }
+
+  return null
+}
+
+async function getKoreaTickers(): Promise<{ btc: number; usdt: number } | null> {
+  return (await getKorbitTickers()) || (await getUpbitTickers())
+}
+
+interface KorbitTicker {
+  symbol: string
+  close: string
+}
+
+interface UpbitTicker {
+  market: string
+  trade_price: number
 }
 
 async function getKorbitTickers(): Promise<{ btc: number; usdt: number } | null> {
@@ -45,17 +78,11 @@ async function getKorbitTickers(): Promise<{ btc: number; usdt: number } | null>
     if (!res.ok) return null
     const json = await res.json()
 
-    if (!json || !Array.isArray(json.data)) {
-      return null
-    }
+    if (!json || !Array.isArray(json.data)) return null
 
     const data = json.data
-    const btcTicker = data.find(
-      (item: { symbol: string; close: string }) => item.symbol === 'btc_krw'
-    )
-    const usdtTicker = data.find(
-      (item: { symbol: string; close: string }) => item.symbol === 'usdt_krw'
-    )
+    const btcTicker = data.find((item: KorbitTicker) => item.symbol === 'btc_krw')
+    const usdtTicker = data.find((item: KorbitTicker) => item.symbol === 'usdt_krw')
 
     return {
       btc: btcTicker ? parseFloat(btcTicker.close) : 0,
@@ -67,34 +94,69 @@ async function getKorbitTickers(): Promise<{ btc: number; usdt: number } | null>
   }
 }
 
+async function getUpbitTickers(): Promise<{ btc: number; usdt: number } | null> {
+  try {
+    const res = await fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-USDT', {
+      next: { revalidate: 30 },
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+
+    const btcTicker = data.find((item: UpbitTicker) => item.market === 'KRW-BTC')
+    const usdtTicker = data.find((item: UpbitTicker) => item.market === 'KRW-USDT')
+
+    return {
+      btc: btcTicker ? btcTicker.trade_price : 0,
+      usdt: usdtTicker ? usdtTicker.trade_price : 0,
+    }
+  } catch (e) {
+    console.error('Upbit fetch error:', e)
+    return null
+  }
+}
+
 async function getCryptoData(): Promise<CryptoData | { error: string }> {
-  const [exchangeRate, binanceBtc, korbitData] = await Promise.all([
+  const [exchangeRate, globalBtc, koreaData] = await Promise.all([
     getExchangeRate(),
-    getBinancePrice(),
-    getKorbitTickers(),
+    getGlobalBtcPrice(),
+    getKoreaTickers(),
   ])
 
-  if (!exchangeRate || !binanceBtc || !korbitData) {
-    return { error: '데이터를 불러오는 중 오류가 발생했습니다.' }
+  const errors: string[] = []
+  if (!exchangeRate) {
+    console.error('❌ [CryptoData] Exchange Rate load failed')
+    errors.push('환율 정보를 불러올 수 없습니다.')
+  }
+  if (!globalBtc) {
+    console.error('❌ [CryptoData] Global BTC Price load failed (Binance & CoinGecko)')
+    errors.push('바이낸스/CoinGecko 가격 정보를 불러올 수 없습니다.')
+  }
+  if (!koreaData) {
+    console.error('❌ [CryptoData] Korea Tickers load failed (Korbit & Upbit)')
+    errors.push('국내 거래소(코빗/업비트) 가격 정보를 불러올 수 없습니다.')
+  }
+
+  if (errors.length > 0) {
+    return { error: `데이터 로드 실패: ${errors.join(', ')}` }
   }
 
   // BTC Calculation
-  const btcKrw = korbitData.btc
-  const btcUsd = binanceBtc
-  const btcExchanged = btcUsd * exchangeRate
+  const btcKrw = koreaData!.btc
+  const btcUsd = globalBtc!
+  const btcExchanged = btcUsd * exchangeRate!
   const btcPremium = btcKrw - btcExchanged
   const btcPremiumPercent = (btcKrw / btcExchanged - 1) * 100
 
   // USDT Calculation
   // USDT is pegged to roughly 1 USD (Standard reference)
-  const usdtKrw = korbitData.usdt
+  const usdtKrw = koreaData!.usdt
   const usdtRef = 1
-  const usdtExchanged = usdtRef * exchangeRate
+  const usdtExchanged = usdtRef * exchangeRate!
   const usdtPremium = usdtKrw - usdtExchanged
   const usdtPremiumPercent = (usdtKrw / usdtExchanged - 1) * 100
 
   return {
-    exchangeRate,
+    exchangeRate: exchangeRate!,
     lastUpdated: new Date().toISOString(),
     btc: {
       krwPrice: btcKrw,

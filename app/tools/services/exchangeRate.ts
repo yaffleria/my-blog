@@ -28,6 +28,21 @@ export async function getExchangeRate(): Promise<number | null> {
     return null
   } catch (error) {
     console.error('❌ [FX] Exception:', error)
-    return null
   }
+
+  // Fallback: Open Exchange Rates (open.er-api.com)
+  try {
+    const fallbackUrl = 'https://open.er-api.com/v6/latest/USD'
+    const res = await fetch(fallbackUrl, { next: { revalidate: 300 } })
+    if (res.ok) {
+      const data = await res.json()
+      if (data && data.rates && data.rates.KRW) {
+        return data.rates.KRW
+      }
+    }
+  } catch (e) {
+    console.error('❌ [FX] Fallback Error:', e)
+  }
+
+  return null
 }
