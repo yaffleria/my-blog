@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
-import { Stone } from 'lucide-react'
+import { Stone, Bitcoin } from 'lucide-react'
 
 export const metadata = genPageMetadata({ title: 'Tools' })
 
@@ -11,6 +11,13 @@ const tools = [
     href: '/tools/krx-gold-premium',
     icon: Stone,
     color: 'text-yellow-500 dark:text-yellow-400',
+  },
+  {
+    title: '비트코인/USDT 김치 프리미엄',
+    description: '비트코인과 테더(USDT)의 김치 프리미엄을 실시간으로 확인합니다',
+    href: '/tools/crypto-premium',
+    icon: Bitcoin,
+    color: 'text-orange-500 dark:text-orange-400',
   },
 ]
 
