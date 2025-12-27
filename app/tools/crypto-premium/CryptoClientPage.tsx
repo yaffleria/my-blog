@@ -20,9 +20,6 @@ interface CryptoData {
   exchangeRate: number
   lastUpdated: string
   error?: string
-  btcSource?: string
-  koreaSource?: string
-  exchangeRateSource?: string
 }
 
 export default function CryptoClientPage({
@@ -56,11 +53,11 @@ export default function CryptoClientPage({
       {/* Custom Header Controls for switching */}
       <PremiumDashboard
         title={isBtc ? '비트코인 김치 프리미엄' : '테더(USDT) 김치 프리미엄'}
-        subtitle="Binance vs Korbit 시세 비교"
+        subtitle="Binance vs Upbit 시세 비교"
         data={dashboardData}
         unitLabel={isBtc ? '1 BTC' : '1 USDT'}
-        baseSourceLabel={initialData.koreaSource || 'Korbit'}
-        intlSourceLabel={isBtc ? initialData.btcSource || 'Binance' : '환율 (1 USD)'}
+        baseSourceLabel="Upbit"
+        intlSourceLabel={isBtc ? 'Binance' : '환율 (1 USD)'}
         baseCurrency="KRW"
         // Custom International Price Display
         customIntlPrice={

@@ -84,7 +84,7 @@ export default function CryptoInfoSection() {
             </summary>
             <div className="mt-3 text-sm text-gray-600 dark:text-gray-400">
               김치프리미엄(%) = ((국내 시세 / (해외 시세 × 환율)) - 1) × 100.
-              <br />본 사이트에서는 국내 시세(Korbit)와 해외 시세(Binance)를 실시간 환율로 환산하여
+              <br />본 사이트에서는 국내 시세(Upbit)와 해외 시세(Binance)를 실시간 환율로 환산하여
               가장 정확한 프리미엄 수치를 제공합니다.
             </div>
           </details>

@@ -21,57 +21,21 @@ interface CryptoData {
   exchangeRate: number
   lastUpdated: string
   error?: string
-  btcSource?: string
-  koreaSource?: string
-  exchangeRateSource?: string
 }
 
-async function getGlobalBtcPrice(): Promise<{ price: number; source: string } | null> {
-  // 1. Try Binance
+async function getGlobalBtcPrice(): Promise<number | null> {
   try {
     const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', {
       next: { revalidate: 30 },
     })
     if (res.ok) {
       const data = await res.json()
-      console.log('✅ [CryptoData] Global Price: Binance Success')
-      return { price: parseFloat(data.price), source: 'Binance' }
+      return parseFloat(data.price)
     }
   } catch (e) {
     console.error('Binance fetch error:', e)
   }
-
-  // 2. Fallback to CoinGecko
-  try {
-    const res = await fetch(
-      'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
-      {
-        next: { revalidate: 30 },
-      }
-    )
-    if (res.ok) {
-      const data = await res.json()
-      console.log('✅ [CryptoData] Global Price: CoinGecko Success')
-      return { price: data.bitcoin.usd, source: 'CoinGecko' }
-    }
-  } catch (e) {
-    console.error('CoinGecko fetch error:', e)
-  }
-
   return null
-}
-
-async function getKoreaTickers(): Promise<{
-  btc: number
-  usdt: number
-  source: string
-} | null> {
-  return (await getKorbitTickers()) || (await getUpbitTickers())
-}
-
-interface KorbitTicker {
-  symbol: string
-  close: string
 }
 
 interface UpbitTicker {
@@ -79,41 +43,7 @@ interface UpbitTicker {
   trade_price: number
 }
 
-async function getKorbitTickers(): Promise<{
-  btc: number
-  usdt: number
-  source: string
-} | null> {
-  try {
-    const res = await fetch('https://api.korbit.co.kr/v2/tickers?symbol=btc_krw,usdt_krw', {
-      next: { revalidate: 30 },
-    })
-    if (!res.ok) return null
-    const json = await res.json()
-
-    if (!json || !Array.isArray(json.data)) return null
-
-    const data = json.data
-    const btcTicker = data.find((item: KorbitTicker) => item.symbol === 'btc_krw')
-    const usdtTicker = data.find((item: KorbitTicker) => item.symbol === 'usdt_krw')
-
-    console.log('✅ [CryptoData] Korea Price: Korbit Success')
-    return {
-      btc: btcTicker ? parseFloat(btcTicker.close) : 0,
-      usdt: usdtTicker ? parseFloat(usdtTicker.close) : 0,
-      source: 'Korbit',
-    }
-  } catch (e) {
-    console.error('Korbit fetch error:', e)
-    return null
-  }
-}
-
-async function getUpbitTickers(): Promise<{
-  btc: number
-  usdt: number
-  source: string
-} | null> {
+async function getUpbitTickers(): Promise<{ btc: number; usdt: number } | null> {
   try {
     const res = await fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-USDT', {
       next: { revalidate: 30 },
@@ -124,11 +54,9 @@ async function getUpbitTickers(): Promise<{
     const btcTicker = data.find((item: UpbitTicker) => item.market === 'KRW-BTC')
     const usdtTicker = data.find((item: UpbitTicker) => item.market === 'KRW-USDT')
 
-    console.log('✅ [CryptoData] Korea Price: Upbit Success')
     return {
       btc: btcTicker ? btcTicker.trade_price : 0,
       usdt: usdtTicker ? usdtTicker.trade_price : 0,
-      source: 'Upbit',
     }
   } catch (e) {
     console.error('Upbit fetch error:', e)
@@ -137,10 +65,10 @@ async function getUpbitTickers(): Promise<{
 }
 
 async function getCryptoData(): Promise<CryptoData | { error: string }> {
-  const [exchangeRate, globalBtc, koreaData] = await Promise.all([
+  const [exchangeRate, globalBtcPrice, upbitData] = await Promise.all([
     getExchangeRate(),
     getGlobalBtcPrice(),
-    getKoreaTickers(),
+    getUpbitTickers(),
   ])
 
   const errors: string[] = []
@@ -148,13 +76,13 @@ async function getCryptoData(): Promise<CryptoData | { error: string }> {
     console.error('❌ [CryptoData] Exchange Rate load failed')
     errors.push('환율 정보를 불러올 수 없습니다.')
   }
-  if (!globalBtc) {
-    console.error('❌ [CryptoData] Global BTC Price load failed (Binance & CoinGecko)')
-    errors.push('바이낸스/CoinGecko 가격 정보를 불러올 수 없습니다.')
+  if (!globalBtcPrice) {
+    console.error('❌ [CryptoData] Global BTC Price load failed (Binance)')
+    errors.push('바이낸스 가격 정보를 불러올 수 없습니다.')
   }
-  if (!koreaData) {
-    console.error('❌ [CryptoData] Korea Tickers load failed (Korbit & Upbit)')
-    errors.push('국내 거래소(코빗/업비트) 가격 정보를 불러올 수 없습니다.')
+  if (!upbitData) {
+    console.error('❌ [CryptoData] Korea Tickers load failed (Upbit)')
+    errors.push('국내 거래소(업비트) 가격 정보를 불러올 수 없습니다.')
   }
 
   if (errors.length > 0) {
@@ -162,15 +90,15 @@ async function getCryptoData(): Promise<CryptoData | { error: string }> {
   }
 
   // BTC Calculation
-  const btcKrw = koreaData!.btc
-  const btcUsd = globalBtc!.price
+  const btcKrw = upbitData!.btc
+  const btcUsd = globalBtcPrice!
   const btcExchanged = btcUsd * exchangeRate!
   const btcPremium = btcKrw - btcExchanged
   const btcPremiumPercent = (btcKrw / btcExchanged - 1) * 100
 
   // USDT Calculation
   // USDT is pegged to roughly 1 USD (Standard reference)
-  const usdtKrw = koreaData!.usdt
+  const usdtKrw = upbitData!.usdt
   const usdtRef = 1
   const usdtExchanged = usdtRef * exchangeRate!
   const usdtPremium = usdtKrw - usdtExchanged
@@ -178,9 +106,6 @@ async function getCryptoData(): Promise<CryptoData | { error: string }> {
 
   return {
     exchangeRate: exchangeRate!,
-    exchangeRateSource: 'Frankfurter/OpenER', // Simplified for now as exchangeRate.ts doesn't return source yet
-    btcSource: globalBtc!.source,
-    koreaSource: koreaData!.source,
     lastUpdated: new Date().toISOString(),
     btc: {
       krwPrice: btcKrw,
@@ -212,7 +137,7 @@ export default async function CryptoPremiumPage() {
     priceCurrency: 'KRW',
     url: 'https://nenyaffle.com/tools/crypto-premium',
     exchangeRate: 'exchangeRate' in data ? data.exchangeRate : 0,
-    relatedLink: ['https://korbit.co.kr', 'https://binance.com'],
+    relatedLink: ['https://upbit.com', 'https://binance.com'],
     mainEntity: {
       '@type': 'ExchangeRateSpecification',
       currency: 'KRW',
@@ -239,7 +164,7 @@ export default async function CryptoPremiumPage() {
         name: '김치프리미엄은 어떻게 계산되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '김치프리미엄(%) = ((국내 시세 / (해외 시세 × 환율)) - 1) × 100. 본 사이트에서는 국내 시세(Korbit)와 해외 시세(Binance)를 실시간 환율로 환산하여 계산합니다.',
+          text: '김치프리미엄(%) = ((국내 시세 / (해외 시세 × 환율)) - 1) × 100. 본 사이트에서는 국내 시세(Upbit)와 해외 시세(Binance)를 실시간 환율로 환산하여 계산합니다.',
         },
       },
       {
