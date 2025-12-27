@@ -53,11 +53,11 @@ export default function CryptoClientPage({
       {/* Custom Header Controls for switching */}
       <PremiumDashboard
         title={isBtc ? '비트코인 김치 프리미엄' : '테더(USDT) 김치 프리미엄'}
-        subtitle="Binance vs Upbit 시세 비교"
+        subtitle="Coingecko vs Upbit 시세 비교"
         data={dashboardData}
         unitLabel={isBtc ? '1 BTC' : '1 USDT'}
         baseSourceLabel="Upbit"
-        intlSourceLabel={isBtc ? 'Binance' : '환율 (1 USD)'}
+        intlSourceLabel={isBtc ? 'Coingecko' : '환율 (1 USD)'}
         baseCurrency="KRW"
         // Custom International Price Display
         customIntlPrice={

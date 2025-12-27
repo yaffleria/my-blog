@@ -7,13 +7,13 @@ export const revalidate = 30
 
 interface CryptoData {
   btc: {
-    krwPrice: number // Korbit
-    usdPrice: number // Binance
+    krwPrice: number // UBpit
+    usdPrice: number // Coingecko
     premium: number
     premiumPercent: number
   }
   usdt: {
-    krwPrice: number // Korbit
+    krwPrice: number // Upbit
     usdPrice: number // Fixed 1 USD
     premium: number
     premiumPercent: number
@@ -25,15 +25,18 @@ interface CryptoData {
 
 async function getGlobalBtcPrice(): Promise<number | null> {
   try {
-    const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', {
-      next: { revalidate: 30 },
-    })
+    const res = await fetch(
+      'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
+      {
+        next: { revalidate: 30 },
+      }
+    )
     if (res.ok) {
       const data = await res.json()
-      return parseFloat(data.price)
+      return data.bitcoin.usd
     }
   } catch (e) {
-    console.error('Binance fetch error:', e)
+    console.error('Coingecko fetch error:', e)
   }
   return null
 }
@@ -77,8 +80,8 @@ async function getCryptoData(): Promise<CryptoData | { error: string }> {
     errors.push('환율 정보를 불러올 수 없습니다.')
   }
   if (!globalBtcPrice) {
-    console.error('❌ [CryptoData] Global BTC Price load failed (Binance)')
-    errors.push('바이낸스 가격 정보를 불러올 수 없습니다.')
+    console.error('❌ [CryptoData] Global BTC Price load failed (Coingecko)')
+    errors.push('코인게코 가격 정보를 불러올 수 없습니다.')
   }
   if (!upbitData) {
     console.error('❌ [CryptoData] Korea Tickers load failed (Upbit)')
@@ -137,7 +140,7 @@ export default async function CryptoPremiumPage() {
     priceCurrency: 'KRW',
     url: 'https://nenyaffle.com/tools/crypto-premium',
     exchangeRate: 'exchangeRate' in data ? data.exchangeRate : 0,
-    relatedLink: ['https://upbit.com', 'https://binance.com'],
+    relatedLink: ['https://upbit.com', 'https://coingecko.com'],
     mainEntity: {
       '@type': 'ExchangeRateSpecification',
       currency: 'KRW',
@@ -164,7 +167,7 @@ export default async function CryptoPremiumPage() {
         name: '김치프리미엄은 어떻게 계산되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '김치프리미엄(%) = ((국내 시세 / (해외 시세 × 환율)) - 1) × 100. 본 사이트에서는 국내 시세(Upbit)와 해외 시세(Binance)를 실시간 환율로 환산하여 계산합니다.',
+          text: '김치프리미엄(%) = ((국내 시세 / (해외 시세 × 환율)) - 1) × 100. 본 사이트에서는 국내 시세(Upbit)와 해외 시세(Coingecko)를 실시간 환율로 환산하여 계산합니다.',
         },
       },
       {
