@@ -10,7 +10,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/yaffleria/nenyaffle',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
-  // email: 'yaffleria@gmail.com', // 비활성화: 개인정보 최소화
+  email: 'yaffleria@gmail.com',
   // github: 'https://github.com/yaffleria', // 비활성화: 개인정보 최소화
   x: 'https://x.com/nenyacat',
   locale: 'ko-KR',
