@@ -83,15 +83,27 @@ interface GoldPriceResponse {
   }
 }
 
+// 날짜 계산 유틸리티 (YYYYMMDD)
+function getQueryDate(daysOffset: number): string {
+  const date = new Date()
+  date.setDate(date.getDate() + daysOffset)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}${month}${day}`
+}
+
 async function fetchGoldPriceFromKRX(): Promise<GoldPriceItem | null> {
   const KRX_API_BASE = 'https://apis.data.go.kr/1160100/service/GetGeneralProductInfoService'
   const serviceKey = DATA_GO_KR_API_KEY
 
   const queryParams = new URLSearchParams({
     serviceKey: serviceKey,
-    numOfRows: '10',
+    numOfRows: '60', // 다른 금 종목(100g 등)도 섞여 있을 수 있으므로 넉넉하게 요청
     pageNo: '1',
     resultType: 'json',
+    beginBasDt: getQueryDate(-14), // 2주 전부터 검색 (연휴 대비)
+    endBasDt: getQueryDate(0), // 오늘까지
   })
 
   // itmsNm=금 99.99_1Kg 파라미터를 추가하면 더 정확하지만, 인코딩 이슈가 있을 수 있어 필터링으로 처리
@@ -128,11 +140,23 @@ async function fetchGoldPriceFromKRX(): Promise<GoldPriceItem | null> {
       return null
     }
 
+    // 날짜 기준 내림차순 정렬 (최신 데이터 우선)
+    const sortedItems = items.sort((a, b) => Number(b.basDt) - Number(a.basDt))
+
     // 금 99.99_1Kg 종목 찾기 (없으면 첫번째 항목)
-    const goldItem = items.find((item) => item.itmsNm.includes('1Kg')) || items[0]
+    // API 데이터에서 '1Kg'와 '1kg'가 혼용되어 내려오는 경우가 있음 (예: 2025/12/29는 1kg, 12/26은 1Kg)
+    const goldItem =
+      sortedItems.find((item) => item.itmsNm.toLowerCase().includes('1kg')) || sortedItems[0]
 
     if (isDev) {
-      console.log('✅ [KRX] Gold Item Found:', goldItem.itmsNm, 'Price:', goldItem.clpr)
+      console.log(
+        '✅ [KRX] Gold Item Found:',
+        goldItem.itmsNm,
+        'Price:',
+        goldItem.clpr,
+        'Date:',
+        goldItem.basDt
+      )
     }
 
     return goldItem
