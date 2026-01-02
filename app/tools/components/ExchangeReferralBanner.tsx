@@ -74,6 +74,7 @@ export default function ExchangeReferralSlider() {
               href={referral.url}
               target="_blank"
               rel="noopener noreferrer sponsored"
+              onClick={(e) => e.stopPropagation()}
               className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-gradient-to-r from-white to-gray-50 px-3 py-2 transition-all duration-200 hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:from-gray-800 dark:to-gray-800/50"
             >
               {/* 로고 */}
