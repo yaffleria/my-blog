@@ -30,6 +30,9 @@ interface PremiumDashboardProps {
   // Slot for extra controls (like unit toggle)
   headerControls?: React.ReactNode
 
+  // Slot for content between premium and price sections
+  middleSlot?: React.ReactNode
+
   // Custom Price Overrides (if provided, replaces default formatCurrency output)
   customBasePrice?: React.ReactNode
   customIntlPrice?: React.ReactNode
@@ -79,6 +82,7 @@ export default function PremiumDashboard({
   currencyType = 'KRW',
   refreshPeriodLabel = '실시간/10초',
   headerControls,
+  middleSlot,
   customBasePrice,
   customIntlPrice,
   hideExchangeRateNote,
@@ -143,6 +147,9 @@ export default function PremiumDashboard({
           </p>
         </div>
       </div>
+
+      {/* Middle Slot (e.g., Referral Banner) */}
+      {middleSlot && <div className="mb-6 px-4">{middleSlot}</div>}
 
       {/* 3. Detail Cards */}
       <div className="mb-8 space-y-4 px-4">

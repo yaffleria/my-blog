@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import PremiumDashboard, { PremiumData } from '../components/PremiumDashboard'
+import ExchangeReferralSlider from '../components/ExchangeReferralBanner'
 import Image from 'next/image'
 
 interface CryptoData {
@@ -35,9 +36,6 @@ export default function CryptoClientPage({
 
   const isBtc = mode === 'BTC'
   const currentData = isBtc ? initialData.btc : initialData.usdt
-  const symbolImg = isBtc
-    ? '/static/images/crypto/bitcoin-symbol.png'
-    : '/static/images/crypto/usdt-symbol.png'
 
   const dashboardData: PremiumData = {
     basePrice: currentData.krwPrice,
@@ -88,6 +86,8 @@ export default function CryptoClientPage({
           )
         }
         refreshPeriodLabel="30초"
+        // 프리미엄 영역과 시세 카드 사이에 레퍼럴 배너 삽입
+        middleSlot={<ExchangeReferralSlider />}
         headerControls={
           <div className="flex items-center gap-4 rounded-full bg-gray-100 p-1 dark:bg-gray-800">
             <button
