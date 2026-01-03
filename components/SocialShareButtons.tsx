@@ -63,8 +63,6 @@ export default function SocialShareButtons({ url, title, summary }: SocialShareB
 
     if (!KAKAO_JS_KEY) {
       console.error('Kakao JavaScript key is not configured')
-      // Fallback: 클립보드에 URL 복사
-      handleCopyLink()
       return
     }
 
