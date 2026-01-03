@@ -108,14 +108,36 @@ export default function PrivacyPage() {
         </ul>
 
         <h2>7. 이용자의 권리</h2>
-        <p>이용자는 다음과 같은 권리를 행사할 수 있습니다:</p>
+        <p>
+          본 사이트는 회원가입, 뉴스레터 구독 등을 통해 이용자의 개인정보를 직접 수집하지 않습니다.
+          수집되는 정보는 Google Analytics, Vercel Analytics 등 제3자 서비스를 통해 자동으로
+          수집되는 익명화된 통계 데이터입니다.
+        </p>
+        <p>이용자는 다음과 같은 방법으로 데이터 수집을 제한할 수 있습니다:</p>
         <ul>
-          <li>개인정보 수집 및 이용에 대한 동의 철회</li>
-          <li>개인정보 열람 및 정정 요청</li>
-          <li>개인정보 삭제 요청</li>
+          <li>
+            <strong>쿠키 거부</strong>: 브라우저 설정에서 쿠키를 거부하거나 삭제할 수 있습니다 (위
+            &quot;6. 쿠키 관리&quot; 참조).
+          </li>
+          <li>
+            <strong>Google Analytics 옵트아웃</strong>:{' '}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            >
+              Google Analytics 옵트아웃 브라우저 부가기능
+            </a>
+            을 설치하여 Google Analytics 데이터 수집을 차단할 수 있습니다.
+          </li>
+          <li>
+            <strong>Do Not Track</strong>: 브라우저의 &quot;Do Not Track&quot; 기능을 활성화할 수
+            있습니다.
+          </li>
         </ul>
         <p>
-          위 권리 행사를 원하시는 경우{' '}
+          기타 개인정보 관련 문의사항이 있으시면{' '}
           <a
             href="mailto:yaffleria@gmail.com"
             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
