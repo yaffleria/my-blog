@@ -9,6 +9,7 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import { decodeHtmlEntities } from '@/lib/utils'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -32,6 +33,7 @@ interface LayoutProps {
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
+  const decodedTitle = decodeHtmlEntities(title)
 
   return (
     <SectionContainer>
@@ -51,7 +53,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </div>
               </dl>
               <div>
-                <PageTitle>{title}</PageTitle>
+                <PageTitle>{decodedTitle}</PageTitle>
               </div>
             </div>
           </header>
@@ -133,7 +135,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           Previous Article
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${prev.path}`}>{prev.title}</Link>
+                          <Link href={`/${prev.path}`}>{decodeHtmlEntities(prev.title)}</Link>
                         </div>
                       </div>
                     )}
@@ -143,7 +145,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           Next Article
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${next.path}`}>{next.title}</Link>
+                          <Link href={`/${next.path}`}>{decodeHtmlEntities(next.title)}</Link>
                         </div>
                       </div>
                     )}

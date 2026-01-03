@@ -9,6 +9,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
+import { decodeHtmlEntities } from '@/lib/utils'
 
 interface PaginationProps {
   totalPages: number
@@ -127,6 +128,8 @@ export default function ListLayoutWithTags({
             <ul>
               {displayPosts.map((post) => {
                 const { path, date, title, summary, tags } = post
+                const decodedTitle = decodeHtmlEntities(title)
+                const decodedSummary = summary ? decodeHtmlEntities(summary) : ''
                 return (
                   <li key={path} className="py-5">
                     <article className="flex flex-col space-y-2 xl:space-y-0">
@@ -142,7 +145,7 @@ export default function ListLayoutWithTags({
                         <div>
                           <h2 className="text-2xl leading-8 font-bold tracking-tight">
                             <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                              {title}
+                              {decodedTitle}
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
@@ -152,7 +155,7 @@ export default function ListLayoutWithTags({
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
+                          {decodedSummary}
                         </div>
                       </div>
                     </article>

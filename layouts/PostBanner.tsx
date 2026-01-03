@@ -9,6 +9,7 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import { decodeHtmlEntities } from '@/lib/utils'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -21,6 +22,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
   const { slug, title, images } = content
   const displayImage =
     images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
+  const decodedTitle = decodeHtmlEntities(title)
 
   return (
     <SectionContainer>
@@ -36,7 +38,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
               </Bleed>
             </div>
             <div className="relative pt-10">
-              <PageTitle>{title}</PageTitle>
+              <PageTitle>{decodedTitle}</PageTitle>
             </div>
           </div>
           <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
@@ -54,7 +56,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     aria-label={`Previous post: ${prev.title}`}
                   >
-                    &larr; {prev.title}
+                    &larr; {decodeHtmlEntities(prev.title)}
                   </Link>
                 </div>
               )}
@@ -65,7 +67,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     aria-label={`Next post: ${next.title}`}
                   >
-                    {next.title} &rarr;
+                    {decodeHtmlEntities(next.title)} &rarr;
                   </Link>
                 </div>
               )}
