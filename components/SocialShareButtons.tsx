@@ -31,9 +31,15 @@ interface SocialShareButtonsProps {
   url: string
   title: string
   summary?: string
+  image?: string
 }
 
-export default function SocialShareButtons({ url, title, summary }: SocialShareButtonsProps) {
+export default function SocialShareButtons({
+  url,
+  title,
+  summary,
+  image,
+}: SocialShareButtonsProps) {
   const [copied, setCopied] = useState(false)
   const encodedUrl = encodeURIComponent(url)
   const encodedTitle = encodeURIComponent(title)
@@ -92,7 +98,7 @@ export default function SocialShareButtons({ url, title, summary }: SocialShareB
       content: {
         title: title,
         description: summary || '',
-        imageUrl: '', // 썸네일 이미지 (선택사항)
+        imageUrl: image || '',
         link: {
           mobileWebUrl: url,
           webUrl: url,

@@ -124,6 +124,15 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           url={`${siteMetadata.siteUrl}/${post.path}`}
           title={post.title}
           summary={post.summary}
+          image={
+            post.images
+              ? (typeof post.images === 'string' ? post.images : post.images[0])?.includes('http')
+                ? typeof post.images === 'string'
+                  ? post.images
+                  : post.images[0]
+                : `${siteMetadata.siteUrl}${typeof post.images === 'string' ? post.images : post.images[0]}`
+              : `${siteMetadata.siteUrl}${siteMetadata.socialBanner}`
+          }
         />
       </Layout>
     </>
