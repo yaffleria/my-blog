@@ -75,7 +75,7 @@ export default function ExchangeReferralSlider() {
               target="_blank"
               rel="noopener noreferrer sponsored"
               onClick={(e) => e.stopPropagation()}
-              className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-gradient-to-r from-white to-gray-50 px-3 py-2 transition-all duration-200 hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:from-gray-800 dark:to-gray-800/50"
+              className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-linear-to-r from-white to-gray-50 px-3 py-2 transition-all duration-200 hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:from-gray-800 dark:to-gray-800/50"
             >
               {/* 로고 */}
               <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white p-0.5 shadow-sm dark:bg-gray-700">
