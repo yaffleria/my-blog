@@ -4,8 +4,9 @@ import Script from 'next/script'
 import { useEffect, useRef, useCallback } from 'react'
 
 interface KakaoMapProps {
-  lat: number
-  lng: number
+  lat?: number
+  lng?: number
+  keyword?: string
   level?: number
   width?: string | number
   height?: string | number
