@@ -26,6 +26,20 @@ export default function Footer() {
           <div>{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
         </div>
+        <div className="mb-8 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400">
+          <Link href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300">
+            개인정보처리방침
+          </Link>
+          <Link href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300">
+            이용약관
+          </Link>
+          <Link href="/disclaimer" className="hover:text-gray-700 dark:hover:text-gray-300">
+            면책조항
+          </Link>
+          <Link href="/contact" className="hover:text-gray-700 dark:hover:text-gray-300">
+            연락처
+          </Link>
+        </div>
       </div>
     </footer>
   )
