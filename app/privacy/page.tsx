@@ -147,11 +147,9 @@ export default function PrivacyPage() {
           으로 연락해 주시기 바랍니다.
         </p>
 
-        <h2>8. 개인정보 보호책임자</h2>
+        <h2>8. 연락처</h2>
+        <p>개인정보 관련 문의사항이 있으시면 아래로 연락해 주시기 바랍니다:</p>
         <ul>
-          <li>
-            <strong>성명</strong>: NenyaCat (사이트 운영자)
-          </li>
           <li>
             <strong>이메일</strong>:{' '}
             <a
