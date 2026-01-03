@@ -27,6 +27,8 @@ import RichGeographyChart from './kb-wealth-report-2025/RichGeographyChart'
 import CopperDemandChart from './copper-analysis/CopperDemandChart'
 import CopperPriceForecastChart from './copper-analysis/CopperPriceForecastChart'
 import CopperSupplyDeficitChart from './copper-analysis/CopperSupplyDeficitChart'
+import KakaoMap from './KakaoMap'
+import KakaoMapLinkCard from './KakaoMapLinkCard'
 
 export const components: MDXComponents = {
   Image,
@@ -56,5 +58,7 @@ export const components: MDXComponents = {
   CopperDemandChart,
   CopperPriceForecastChart,
   CopperSupplyDeficitChart,
+  KakaoMap,
+  KakaoMapLinkCard,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }

@@ -1,32 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { decodeHtmlEntities } from '@/lib/utils'
-
-// Kakao SDK 타입 선언
-declare global {
-  interface Window {
-    Kakao?: {
-      init: (key: string) => void
-      isInitialized: () => boolean
-      Share: {
-        sendDefault: (settings: {
-          objectType: string
-          content: {
-            title: string
-            description: string
-            imageUrl: string
-            link: { mobileWebUrl: string; webUrl: string }
-          }
-          buttons: Array<{
-            title: string
-            link: { mobileWebUrl: string; webUrl: string }
-          }>
-        }) => void
-      }
-    }
-  }
-}
+import { decodeHtmlEntities, getCompleteImageUrl } from '@/lib/utils'
+import { useClipboard } from '@/hooks/useClipboard'
+import { useKakaoShare } from '@/hooks/useKakaoShare'
+import siteMetadata from '@/data/siteMetadata'
 
 interface SocialShareButtonsProps {
   url: string
@@ -41,7 +18,8 @@ export default function SocialShareButtons({
   summary,
   image,
 }: SocialShareButtonsProps) {
-  const [copied, setCopied] = useState(false)
+  const { copied, copy } = useClipboard()
+  const { shareToKakao } = useKakaoShare()
 
   // Decode HTML entities for clean display in social shares
   const decodedTitle = decodeHtmlEntities(title)
@@ -53,74 +31,14 @@ export default function SocialShareButtons({
     decodedSummary ? `${decodedTitle}\n${decodedSummary}` : decodedTitle
   )
 
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(url)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea')
-      textArea.value = url
-      document.body.appendChild(textArea)
-      textArea.select()
-      document.execCommand('copy')
-      document.body.removeChild(textArea)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
-  }
+  const handleCopyLink = () => copy(url)
 
-  // 카카오 SDK 동적 로드 및 공유
-  const shareToKakao = async () => {
-    const KAKAO_JS_KEY = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY
-
-    if (!KAKAO_JS_KEY) {
-      console.error('Kakao JavaScript key is not configured')
-      return
-    }
-
-    // Kakao SDK 동적 로드 (SEO에 영향 없음)
-    if (typeof window !== 'undefined' && !window.Kakao) {
-      await new Promise<void>((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.7/kakao.min.js'
-        script.integrity = 'sha384-tJkjbtDbvoxO+diRuDtwRO9JXR7pjWnfjfRn5ePUpl7e7RJCxKCwwnfqUAdXh53p'
-        script.crossOrigin = 'anonymous'
-        script.onload = () => resolve()
-        script.onerror = () => reject(new Error('Failed to load Kakao SDK'))
-        document.head.appendChild(script)
-      })
-    }
-
-    const Kakao = window.Kakao!
-
-    // SDK 초기화 (한 번만)
-    if (!Kakao.isInitialized()) {
-      Kakao.init(KAKAO_JS_KEY)
-    }
-
-    // 카카오톡 공유
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: decodedTitle,
-        description: decodedSummary,
-        imageUrl: image || '',
-        link: {
-          mobileWebUrl: url,
-          webUrl: url,
-        },
-      },
-      buttons: [
-        {
-          title: '자세히 보기',
-          link: {
-            mobileWebUrl: url,
-            webUrl: url,
-          },
-        },
-      ],
+  const handleShareToKakao = () => {
+    shareToKakao({
+      url,
+      title: decodedTitle,
+      description: decodedSummary || siteMetadata.description,
+      image: getCompleteImageUrl(image),
     })
   }
 
@@ -179,7 +97,7 @@ export default function SocialShareButtons({
 
         {/* 카카오톡 */}
         <button
-          onClick={shareToKakao}
+          onClick={handleShareToKakao}
           className={`${buttonBaseClass} bg-[#FEE500] text-[#191919] hover:bg-[#FDD835]`}
           aria-label="카카오톡으로 공유"
         >

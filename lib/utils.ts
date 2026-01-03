@@ -39,3 +39,22 @@ export function decodeHtmlEntities(text: string): string {
 
   return decoded
 }
+
+import siteMetadata from '@/data/siteMetadata'
+
+/**
+ * Get the complete absolute URL for an image
+ * Handles arrays, relative paths, and fallbacks
+ */
+export function getCompleteImageUrl(image: string | string[] | undefined | null): string {
+  const imageUrl = Array.isArray(image) ? image[0] : image
+  const defaultImage = siteMetadata.socialBanner
+
+  const targetImage = imageUrl || defaultImage
+
+  if (targetImage.startsWith('http')) {
+    return targetImage
+  }
+
+  return `${siteMetadata.siteUrl}${targetImage}`
+}

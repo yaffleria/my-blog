@@ -14,7 +14,7 @@ import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 import SocialShareButtons from '@/components/SocialShareButtons'
-import { decodeHtmlEntities } from '@/lib/utils'
+import { decodeHtmlEntities, getCompleteImageUrl } from '@/lib/utils'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -47,7 +47,7 @@ export async function generateMetadata(props: {
   }
   const ogImages = imageList.map((img) => {
     return {
-      url: img.includes('http') ? img : siteMetadata.siteUrl + img,
+      url: getCompleteImageUrl(img),
     }
   })
 
@@ -129,15 +129,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           url={`${siteMetadata.siteUrl}/${post.path}`}
           title={post.title}
           summary={post.summary}
-          image={
-            post.images
-              ? (typeof post.images === 'string' ? post.images : post.images[0])?.includes('http')
-                ? typeof post.images === 'string'
-                  ? post.images
-                  : post.images[0]
-                : `${siteMetadata.siteUrl}${typeof post.images === 'string' ? post.images : post.images[0]}`
-              : `${siteMetadata.siteUrl}${siteMetadata.socialBanner}`
-          }
+          image={getCompleteImageUrl(post.images)}
         />
       </Layout>
     </>
