@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { decodeHtmlEntities } from '@/lib/utils'
 
 // Kakao SDK 타입 선언
 declare global {
@@ -41,9 +42,16 @@ export default function SocialShareButtons({
   image,
 }: SocialShareButtonsProps) {
   const [copied, setCopied] = useState(false)
+
+  // Decode HTML entities for clean display in social shares
+  const decodedTitle = decodeHtmlEntities(title)
+  const decodedSummary = summary ? decodeHtmlEntities(summary) : ''
+
   const encodedUrl = encodeURIComponent(url)
-  const encodedTitle = encodeURIComponent(title)
-  const encodedText = encodeURIComponent(summary ? `${title}\n${summary}` : title)
+  const encodedTitle = encodeURIComponent(decodedTitle)
+  const encodedText = encodeURIComponent(
+    decodedSummary ? `${decodedTitle}\n${decodedSummary}` : decodedTitle
+  )
 
   const handleCopyLink = async () => {
     try {
@@ -96,8 +104,8 @@ export default function SocialShareButtons({
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: title,
-        description: summary || '',
+        title: decodedTitle,
+        description: decodedSummary,
         imageUrl: image || '',
         link: {
           mobileWebUrl: url,

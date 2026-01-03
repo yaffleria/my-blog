@@ -14,6 +14,7 @@ import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 import SocialShareButtons from '@/components/SocialShareButtons'
+import { decodeHtmlEntities } from '@/lib/utils'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -50,12 +51,16 @@ export async function generateMetadata(props: {
     }
   })
 
+  // Decode HTML entities for clean display in social shares and meta tags
+  const decodedTitle = decodeHtmlEntities(post.title)
+  const decodedSummary = post.summary ? decodeHtmlEntities(post.summary) : ''
+
   return {
-    title: post.title,
-    description: post.summary,
+    title: decodedTitle,
+    description: decodedSummary,
     openGraph: {
-      title: post.title,
-      description: post.summary,
+      title: decodedTitle,
+      description: decodedSummary,
       siteName: siteMetadata.title,
       locale: post.language === 'ko' ? 'ko_KR' : 'en_US',
       type: 'article',
@@ -67,8 +72,8 @@ export async function generateMetadata(props: {
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: post.summary,
+      title: decodedTitle,
+      description: decodedSummary,
       images: ogImages.map((img) => img.url),
     },
     alternates: {
