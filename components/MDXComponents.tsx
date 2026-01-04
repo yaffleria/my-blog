@@ -27,6 +27,9 @@ import RichGeographyChart from './kb-wealth-report-2025/RichGeographyChart'
 import CopperDemandChart from './copper-analysis/CopperDemandChart'
 import CopperPriceForecastChart from './copper-analysis/CopperPriceForecastChart'
 import CopperSupplyDeficitChart from './copper-analysis/CopperSupplyDeficitChart'
+import CashFlowCompositionChart from './musicow-analysis/CashFlowCompositionChart'
+import MonthlyDividendPatternChart from './musicow-analysis/MonthlyDividendPatternChart'
+import TaxOptimizationChart from './musicow-analysis/TaxOptimizationChart'
 import KakaoMap from './KakaoMap'
 import KakaoMapLinkCard from './KakaoMapLinkCard'
 
@@ -58,6 +61,9 @@ export const components: MDXComponents = {
   CopperDemandChart,
   CopperPriceForecastChart,
   CopperSupplyDeficitChart,
+  CashFlowCompositionChart,
+  MonthlyDividendPatternChart,
+  TaxOptimizationChart,
   KakaoMap,
   KakaoMapLinkCard,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
