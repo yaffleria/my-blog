@@ -68,7 +68,7 @@ export default function TaxOptimizationChart({
   const distributedNet = distributedData.reduce((sum, d) => sum + d.net, 0)
 
   return (
-    <div className="my-10 w-full rounded-2xl bg-gradient-to-br from-white/80 to-gray-50/80 p-6 shadow-lg ring-1 ring-gray-200/50 backdrop-blur-sm dark:from-gray-900/80 dark:to-gray-800/80 dark:ring-gray-700/50">
+    <div className="my-10 w-full rounded-2xl bg-linear-to-br from-white/80 to-gray-50/80 p-6 shadow-lg ring-1 ring-gray-200/50 backdrop-blur-sm dark:from-gray-900/80 dark:to-gray-800/80 dark:ring-gray-700/50">
       {title && (
         <h4 className="mb-6 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
@@ -191,7 +191,7 @@ export default function TaxOptimizationChart({
       </div>
 
       {/* 비교 요약 */}
-      <div className="mt-6 rounded-xl bg-gradient-to-r from-amber-50 to-yellow-50 p-4 ring-1 ring-amber-200/50 dark:from-amber-900/20 dark:to-yellow-900/20 dark:ring-amber-800/50">
+      <div className="mt-6 rounded-xl bg-linear-to-r from-amber-50 to-yellow-50 p-4 ring-1 ring-amber-200/50 dark:from-amber-900/20 dark:to-yellow-900/20 dark:ring-amber-800/50">
         <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
           <div className="text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">

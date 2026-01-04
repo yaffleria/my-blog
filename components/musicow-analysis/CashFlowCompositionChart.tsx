@@ -56,7 +56,7 @@ export default function CashFlowCompositionChart({
   }
 
   return (
-    <div className="my-10 w-full rounded-2xl bg-gradient-to-br from-white/80 to-gray-50/80 p-6 shadow-lg ring-1 ring-gray-200/50 backdrop-blur-sm dark:from-gray-900/80 dark:to-gray-800/80 dark:ring-gray-700/50">
+    <div className="my-10 w-full rounded-2xl bg-linear-to-br from-white/80 to-gray-50/80 p-6 shadow-lg ring-1 ring-gray-200/50 backdrop-blur-sm dark:from-gray-900/80 dark:to-gray-800/80 dark:ring-gray-700/50">
       {title && (
         <h4 className="mb-6 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
