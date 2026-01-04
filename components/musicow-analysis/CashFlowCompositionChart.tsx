@@ -28,11 +28,11 @@ interface CashFlowCompositionChartProps {
 }
 
 const defaultData: CashFlowData[] = [
-  { name: 'god\n(추천)', 전송: 99, 방송: 0.5, 공연: 0.5, type: 'good' },
-  { name: '차태현\n(추천)', 전송: 98, 방송: 1, 공연: 1, type: 'good' },
-  { name: '쏜애플\n(추천)', 전송: 97, 방송: 2, 공연: 1, type: 'good' },
-  { name: '방송형\n(비추)', 전송: 45, 방송: 50, 공연: 5, type: 'bad' },
-  { name: '이벤트형\n(비추)', 전송: 30, 방송: 20, 공연: 50, type: 'bad' },
+  { name: '음원 A', 전송: 99, 방송: 0.5, 공연: 0.5, type: 'good' },
+  { name: '음원 B', 전송: 98, 방송: 1, 공연: 1, type: 'good' },
+  { name: '음원 C', 전송: 97, 방송: 2, 공연: 1, type: 'good' },
+  { name: '음원 D', 전송: 45, 방송: 50, 공연: 5, type: 'bad' },
+  { name: '음원 E', 전송: 30, 방송: 20, 공연: 50, type: 'bad' },
 ]
 
 export default function CashFlowCompositionChart({
@@ -133,8 +133,8 @@ export default function CashFlowCompositionChart({
         </BarChart>
       </ResponsiveContainer>
       <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
-        💡 <strong className="text-emerald-600 dark:text-emerald-400">초록색(전송)</strong> 비중이
-        90% 이상인 곡만 매수하세요
+        <strong className="text-emerald-600 dark:text-emerald-400">초록색(전송)</strong> 비중이
+        높을수록 현금 흐름이 안정적입니다
       </p>
     </div>
   )

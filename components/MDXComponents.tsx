@@ -30,6 +30,7 @@ import CopperSupplyDeficitChart from './copper-analysis/CopperSupplyDeficitChart
 import CashFlowCompositionChart from './musicow-analysis/CashFlowCompositionChart'
 import MonthlyDividendPatternChart from './musicow-analysis/MonthlyDividendPatternChart'
 import TaxOptimizationChart from './musicow-analysis/TaxOptimizationChart'
+import LongTailCurveChart from './musicow-analysis/LongTailCurveChart'
 import KakaoMap from './KakaoMap'
 import KakaoMapLinkCard from './KakaoMapLinkCard'
 
@@ -64,6 +65,7 @@ export const components: MDXComponents = {
   CashFlowCompositionChart,
   MonthlyDividendPatternChart,
   TaxOptimizationChart,
+  LongTailCurveChart,
   KakaoMap,
   KakaoMapLinkCard,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
