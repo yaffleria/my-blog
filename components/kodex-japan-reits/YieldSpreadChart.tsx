@@ -85,7 +85,7 @@ interface CustomXAxisTickProps {
 }
 
 const CustomXAxisTick = ({ x, y, payload }: CustomXAxisTickProps) => {
-  const item = data.find((d) => d.name === payload.value)
+  const item = data.find((d) => d.name === payload?.value)
   return (
     <g transform={`translate(${x},${y})`}>
       <text
@@ -97,7 +97,7 @@ const CustomXAxisTick = ({ x, y, payload }: CustomXAxisTickProps) => {
         fontSize={11}
         fontWeight={item?.subtitle ? 600 : 400}
       >
-        {payload.value}
+        {payload?.value}
       </text>
       {item?.subtitle && (
         <text x={0} y={0} dy={26} textAnchor="middle" fill="#6B7280" fontSize={10}>
