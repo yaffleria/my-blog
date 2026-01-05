@@ -33,6 +33,12 @@ import TaxOptimizationChart from './musicow-analysis/TaxOptimizationChart'
 import LongTailCurveChart from './musicow-analysis/LongTailCurveChart'
 import KakaoMap from './KakaoMap'
 import KakaoMapLinkCard from './KakaoMapLinkCard'
+import GlobalDefenseSpendingChart from './kraken-geopolitical-analysis/GlobalDefenseSpendingChart'
+import GeopoliticalConnectionDiagram from './kraken-geopolitical-analysis/GeopoliticalConnectionDiagram'
+import UUVMarketProjectionChart from './kraken-geopolitical-analysis/UUVMarketProjectionChart'
+import ThreeScenarioAnalysis from './kraken-geopolitical-analysis/ThreeScenarioAnalysis'
+import PartnershipEcosystem from './kraken-geopolitical-analysis/PartnershipEcosystem'
+import ConnectionFlowDiagram from './kraken-geopolitical-analysis/ConnectionFlowDiagram'
 
 export const components: MDXComponents = {
   Image,
@@ -68,5 +74,11 @@ export const components: MDXComponents = {
   LongTailCurveChart,
   KakaoMap,
   KakaoMapLinkCard,
+  GlobalDefenseSpendingChart,
+  GeopoliticalConnectionDiagram,
+  UUVMarketProjectionChart,
+  ThreeScenarioAnalysis,
+  PartnershipEcosystem,
+  ConnectionFlowDiagram,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }
