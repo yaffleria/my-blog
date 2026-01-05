@@ -12,7 +12,7 @@ const ContentSecurityPolicy = `
   img-src * blob: data:;
   media-src *.s3.amazonaws.com;
   connect-src *;
-  font-src 'self';
+  font-src 'self' https://vercel.live;
   frame-src giscus.app https://www.google.com www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://vercel.live;
 `
 
