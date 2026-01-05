@@ -28,6 +28,8 @@ import CopperDemandChart from './copper-analysis/CopperDemandChart'
 import CopperPriceForecastChart from './copper-analysis/CopperPriceForecastChart'
 import CopperSupplyDeficitChart from './copper-analysis/CopperSupplyDeficitChart'
 import CashFlowCompositionChart from './musicow-analysis/CashFlowCompositionChart'
+import YieldSpreadChart from './kodex-japan-reits/YieldSpreadChart'
+
 import MonthlyDividendPatternChart from './musicow-analysis/MonthlyDividendPatternChart'
 import TaxOptimizationChart from './musicow-analysis/TaxOptimizationChart'
 import LongTailCurveChart from './musicow-analysis/LongTailCurveChart'
@@ -69,6 +71,7 @@ export const components: MDXComponents = {
   CopperPriceForecastChart,
   CopperSupplyDeficitChart,
   CashFlowCompositionChart,
+  YieldSpreadChart,
   MonthlyDividendPatternChart,
   TaxOptimizationChart,
   LongTailCurveChart,
