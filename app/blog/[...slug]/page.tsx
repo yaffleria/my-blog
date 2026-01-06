@@ -77,6 +77,7 @@ export async function generateMetadata(props: {
       images: ogImages.map((img) => img.url),
     },
     alternates: {
+      canonical: './',
       languages: {
         [post.language || 'ko']: './',
       },

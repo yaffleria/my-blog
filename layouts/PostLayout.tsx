@@ -9,6 +9,8 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import TableOfContents from '@/components/TableOfContents'
 import { decodeHtmlEntities } from '@/lib/utils'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
@@ -41,6 +43,13 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
+            <Breadcrumbs
+              breadcrumbs={[
+                { label: 'Home', href: '/' },
+                { label: 'Blog', href: '/blog' },
+                { label: title },
+              ]}
+            />
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
@@ -115,6 +124,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </div>
             <footer>
               <div className="divide-gray-200 text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700">
+                <div className="sticky top-0 pt-4 xl:pt-8">
+                  <TableOfContents toc={content.toc} />
+                </div>
                 {tags && (
                   <div className="py-4 xl:py-8">
                     <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
