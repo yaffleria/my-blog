@@ -365,14 +365,14 @@ export default async function KRXGoldPremiumPage() {
     currency: 'KRW',
     price: result.krxPrice,
     priceCurrency: 'KRW',
-    url: 'https://nenyaffle.com/tools/krx-gold-premium',
+    url: 'https://www.yaffleria.com/tools/krx-gold-premium',
     exchangeRate: result.exchangeRate,
     offers: {
       '@type': 'Offer',
       price: result.krxPrice,
       priceCurrency: 'KRW',
       availability: 'https://schema.org/InStock',
-      url: 'https://nenyaffle.com/tools/krx-gold-premium',
+      url: 'https://www.yaffleria.com/tools/krx-gold-premium',
     },
     provider: {
       '@type': 'Organization',

@@ -1,6 +1,37 @@
+import { genPageMetadata } from 'app/seo'
 import { getExchangeRate } from '../services/exchangeRate'
 import CryptoClientPage from './CryptoClientPage'
 import CryptoInfoSection from './CryptoInfoSection'
+
+export const metadata = genPageMetadata({
+  title: '비트코인 김치프리미엄 계산기 | 실시간 김프 조회 (BTC, USDT)',
+  description:
+    '비트코인(BTC)과 테더(USDT)의 김치프리미엄을 실시간으로 확인하세요. 업비트 vs 코인게코 시세 비교, 환율 정보, 김프 차트까지. 코인 투자자 필수 도구.',
+  keywords: [
+    '김치프리미엄',
+    '김프',
+    '비트코인 김프',
+    'USDT 김프',
+    '테더 프리미엄',
+    '업비트 김프',
+    '코인 프리미엄',
+    '암호화폐 프리미엄',
+    'BTC 김치프리미엄',
+    '비트코인 시세',
+    '업비트 시세',
+    '코인게코',
+    '환율',
+    '역프리미엄',
+    '역프',
+  ],
+  openGraph: {
+    title: '비트코인 김치프리미엄 실시간 조회 | BTC, USDT 김프 계산기',
+    description:
+      '국내(업비트) vs 해외(코인게코) 가격 차이를 실시간 확인. 비트코인, 테더 김치프리미엄 계산기.',
+    type: 'website',
+    images: ['/static/images/logo.jpg'],
+  },
+})
 
 // Revalidate every 30 seconds
 export const revalidate = 30
@@ -138,7 +169,7 @@ export default async function CryptoPremiumPage() {
     currency: 'KRW',
     price: data && 'btc' in data ? data.btc.krwPrice : 0,
     priceCurrency: 'KRW',
-    url: 'https://nenyaffle.com/tools/crypto-premium',
+    url: 'https://www.yaffleria.com/tools/crypto-premium',
     exchangeRate: 'exchangeRate' in data ? data.exchangeRate : 0,
     relatedLink: ['https://upbit.com', 'https://coingecko.com'],
     mainEntity: {
