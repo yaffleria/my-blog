@@ -55,7 +55,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="inline-block rounded-lg bg-gray-800 px-4 py-2 text-white transition-colors hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"
             >
-              @yaffleria
+              @nenyacat
             </a>
           </div>
         </div>

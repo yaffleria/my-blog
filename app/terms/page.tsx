@@ -52,9 +52,9 @@ export default function TermsPage() {
           <li>
             본 사이트는 다음과 같은 서비스를 제공합니다:
             <ul>
-              <li>투자, 경제, 기술 관련 정보성 콘텐츠</li>
-              <li>일상, 요리, 건강 등 다양한 주제의 블로그 콘텐츠</li>
-              <li>유용한 도구(Tools) 제공</li>
+              <li>투자, 경제 관련 정보성 콘텐츠</li>
+              <li>투자 관련 도서 리뷰</li>
+              <li>금융 관련 유용한 도구(Tools) 제공</li>
             </ul>
           </li>
           <li>
