@@ -12,7 +12,7 @@ const siteMetadata = {
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
   email: 'yaffleria@gmail.com',
   // github: 'https://github.com/yaffleria', // 비활성화: 개인정보 최소화
-  x: 'https://x.com/yaffleria',
+  x: 'https://x.com/nenyacat',
   locale: 'ko-KR',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,

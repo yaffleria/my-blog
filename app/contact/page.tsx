@@ -41,7 +41,7 @@ export default function ContactPage() {
           {/* X(트위터) 카드 */}
           <div className="rounded-lg border border-gray-200 p-6 dark:border-gray-700">
             <div className="mb-4 flex items-center">
-              <SocialIcon kind="x" href="https://x.com/yaffleria" size={8} />
+              <SocialIcon kind="x" href="https://x.com/nenyacat" size={8} />
               <h3 className="ml-3 text-xl font-bold text-gray-900 dark:text-gray-100">
                 X (Twitter)
               </h3>
@@ -50,7 +50,7 @@ export default function ContactPage() {
               빠른 소통이나 간단한 질문은 X로 연락주세요.
             </p>
             <a
-              href="https://x.com/yaffleria"
+              href="https://x.com/nenyacat"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block rounded-lg bg-gray-800 px-4 py-2 text-white transition-colors hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"
