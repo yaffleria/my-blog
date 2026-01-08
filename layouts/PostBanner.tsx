@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import Disclaimer from '@/components/ui/Disclaimer'
 import Image from '@/components/ui/Image'
 import Bleed from 'pliny/ui/Bleed'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -19,10 +20,12 @@ interface LayoutProps {
 }
 
 export default function PostMinimal({ content, next, prev, children }: LayoutProps) {
-  const { slug, title, images } = content
+  const { slug, title, images, path } = content
   const displayImage =
     images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
   const decodedTitle = decodeHtmlEntities(title)
+
+  const isEnglish = path.startsWith('blog/en/') || path.startsWith('en/')
 
   return (
     <SectionContainer>
@@ -42,6 +45,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             </div>
           </div>
           <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
+          <Disclaimer isEnglish={isEnglish} />
           {siteMetadata.comments && (
             <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
               <Comments slug={slug} />

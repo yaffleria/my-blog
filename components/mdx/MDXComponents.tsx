@@ -41,6 +41,7 @@ import UUVMarketProjectionChart from '@/features/charts/kraken-geopolitical/UUVM
 import ThreeScenarioAnalysis from '@/features/charts/kraken-geopolitical/ThreeScenarioAnalysis'
 import PartnershipEcosystem from '@/features/charts/kraken-geopolitical/PartnershipEcosystem'
 import ConnectionFlowDiagram from '@/features/charts/kraken-geopolitical/ConnectionFlowDiagram'
+import BondYieldCalculator from '@/features/calculators/BondYieldCalculator'
 
 export const components: MDXComponents = {
   Image,
@@ -83,5 +84,6 @@ export const components: MDXComponents = {
   ThreeScenarioAnalysis,
   PartnershipEcosystem,
   ConnectionFlowDiagram,
+  BondYieldCalculator,
   // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
 }

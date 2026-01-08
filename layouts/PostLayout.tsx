@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import Disclaimer from '@/components/ui/Disclaimer'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
 import Comments from '@/components/ui/Comments'
@@ -37,6 +38,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   const basePath = path.split('/')[0]
   const decodedTitle = decodeHtmlEntities(title)
 
+  const isEnglish = path.startsWith('blog/en/') || path.startsWith('en/')
+
   return (
     <SectionContainer>
       <ScrollTopAndComment />
@@ -70,9 +73,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
               <dt className="sr-only">Authors</dt>
               <dd>
-                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
+                <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
                   {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-2" key={author.name}>
+                    <li key={author.name} className="flex items-center space-x-2">
                       {author.avatar && (
                         <Image
                           src={author.avatar}
@@ -106,9 +109,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </dl>
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
+              <Disclaimer isEnglish={isEnglish} />
               <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(path)} rel="nofollow">
-                  Discuss on X
+                  Discuss on TwitterX
                 </Link>
                 {` • `}
                 <Link href={editUrl(filePath)}>View on GitHub</Link>

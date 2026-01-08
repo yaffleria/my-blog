@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import Disclaimer from '@/components/ui/Disclaimer'
 import type { Authors } from 'contentlayer/generated'
 import SocialIcon from '@/components/ui/social-icons'
 import Image from '@/components/ui/Image'
@@ -9,7 +10,8 @@ interface Props {
 }
 
 export default function AuthorLayout({ children, content }: Props) {
-  const { name, avatar, occupation, company, email, twitter, github } = content
+  const { name, avatar, occupation, company, email, twitter, github, path } = content
+  const isEnglish = path?.startsWith('authors/en/') || path?.startsWith('en/')
 
   return (
     <>
@@ -41,6 +43,7 @@ export default function AuthorLayout({ children, content }: Props) {
           </div>
           <div className="prose dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2">
             {children}
+            <Disclaimer isEnglish={isEnglish} />
           </div>
         </div>
       </div>

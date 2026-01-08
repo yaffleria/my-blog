@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
-import { Stone, Bitcoin } from 'lucide-react'
+import { Stone, Bitcoin, Calculator } from 'lucide-react'
 
 export const metadata = genPageMetadata({ title: 'Tools' })
 
@@ -18,6 +18,13 @@ const tools = [
     href: '/tools/crypto-premium',
     icon: Bitcoin,
     color: 'text-orange-500 dark:text-orange-400',
+  },
+  {
+    title: '미국 장기채(TLT) 수익률 시뮬레이터',
+    description: '금리 변동 시나리오에 따른 듀레이션 기반 기대 수익률 계산',
+    href: '/tools/bond-yield-calculator',
+    icon: Calculator,
+    color: 'text-blue-500 dark:text-blue-400',
   },
 ]
 
