@@ -1,5 +1,5 @@
-import Link from '@/components/Link'
-import Tag from '@/components/Tag'
+import Link from '@/components/ui/Link'
+import Tag from '@/components/ui/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import { decodeHtmlEntities } from '@/lib/utils'

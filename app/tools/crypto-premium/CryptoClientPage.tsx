@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import PremiumDashboard, { PremiumData } from '../components/PremiumDashboard'
-import ExchangeReferralSlider from '../components/ExchangeReferralBanner'
+import PremiumDashboard, { PremiumData } from '../_components/PremiumDashboard'
+import ExchangeReferralSlider from '../_components/ExchangeReferralBanner'
 import Image from 'next/image'
 
 interface CryptoData {

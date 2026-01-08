@@ -1,5 +1,5 @@
 import { genPageMetadata } from 'app/seo'
-import { getExchangeRate } from '../services/exchangeRate'
+import { getExchangeRate } from '../_services/exchangeRate'
 import CryptoClientPage from './CryptoClientPage'
 import CryptoInfoSection from './CryptoInfoSection'
 

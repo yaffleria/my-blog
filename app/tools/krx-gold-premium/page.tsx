@@ -1,5 +1,5 @@
 import { genPageMetadata } from 'app/seo'
-import { getExchangeRate } from '../services/exchangeRate'
+import { getExchangeRate } from '../_services/exchangeRate'
 
 export const metadata = genPageMetadata({
   title: 'KRX 금 시세 프리미엄 계산기 | 실시간 한국 vs 국제 금값 비교',

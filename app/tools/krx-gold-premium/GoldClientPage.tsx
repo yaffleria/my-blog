@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import PremiumDashboard, { PremiumData } from '../components/PremiumDashboard'
+import PremiumDashboard, { PremiumData } from '../_components/PremiumDashboard'
 import { Stone } from 'lucide-react'
 
 export const DON_TO_GRAM = 3.75

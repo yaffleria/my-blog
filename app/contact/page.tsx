@@ -1,5 +1,5 @@
 import { genPageMetadata } from 'app/seo'
-import SocialIcon from '@/components/social-icons'
+import SocialIcon from '@/components/ui/social-icons'
 
 export const metadata = genPageMetadata({ title: '연락처' })
 

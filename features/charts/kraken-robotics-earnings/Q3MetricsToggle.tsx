@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import QuarterlyRevenueChart from '../charts/QuarterlyRevenueChart'
-import GrossMarginChart from '../charts/GrossMarginChart'
-import EBITDAChart from '../charts/EBITDAChart'
+import QuarterlyRevenueChart from './QuarterlyRevenueChart'
+import GrossMarginChart from './GrossMarginChart'
+import EBITDAChart from './EBITDAChart'
 
 export default function Q3MetricsToggle() {
   const [view, setView] = useState<'table' | 'chart'>('table')

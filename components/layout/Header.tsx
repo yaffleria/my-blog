@@ -1,9 +1,9 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Link from './Link'
+import Link from '../ui/Link'
 import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
-import SearchButton from './SearchButton'
+import ThemeSwitch from '../ui/ThemeSwitch'
+import SearchButton from '../ui/SearchButton'
 import Image from 'next/image'
 
 const Header = () => {
