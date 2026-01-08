@@ -16,9 +16,9 @@ export default function TermsPage() {
       <div className="prose dark:prose-invert max-w-none pt-8 pb-8">
         <h2>제1조 (목적)</h2>
         <p>
-          본 약관은 NenyaCastle(이하 &quot;본 사이트&quot;)이 제공하는 웹사이트 서비스의 이용과
-          관련하여 운영자와 이용자 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로
-          합니다.
+          본 약관은 Yaffleria&apos;s Blog(이하 &quot;본 사이트&quot;)이 제공하는 웹사이트 서비스의
+          이용과 관련하여 운영자와 이용자 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을
+          목적으로 합니다.
         </p>
 
         <h2>제2조 (정의)</h2>

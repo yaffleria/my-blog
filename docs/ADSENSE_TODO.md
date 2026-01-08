@@ -1,6 +1,6 @@
 # 🚨 구글 애드센스 승인 TODO
 
-> **사이트**: yaffleria.com (NenyaCastle)  
+> **사이트**: yaffleria.com (Yaffleria's Blog)  
 > **생성일**: 2026-01-03  
 > **거절 사유**: 가치가 별로 없는 콘텐츠 (Low Value Content)
 

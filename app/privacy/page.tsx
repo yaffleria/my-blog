@@ -16,8 +16,8 @@ export default function PrivacyPage() {
       <div className="prose dark:prose-invert max-w-none pt-8 pb-8">
         <h2>1. 개인정보 수집 항목</h2>
         <p>
-          NenyaCastle(이하 &quot;본 사이트&quot;)은 서비스 제공을 위해 다음과 같은 정보를 자동으로
-          수집할 수 있습니다:
+          Yaffleria&apos;s Blog(이하 &quot;본 사이트&quot;)은 서비스 제공을 위해 다음과 같은 정보를
+          자동으로 수집할 수 있습니다:
         </p>
         <ul>
           <li>

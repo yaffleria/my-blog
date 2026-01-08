@@ -1,7 +1,7 @@
 {
-  "name": "NenyaCastle",
-  "short_name": "NenyaCastle",
-  "description": "고양이 네냐가 지키는 신비로운 성에서 전하는 투자 인사이트와 기술 이야기",
+  "name": "Yaffleria's Blog",
+  "short_name": "Yaffleria",
+  "description": "개인 투자자를 위한 기업 분석과 투자 인사이트",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
