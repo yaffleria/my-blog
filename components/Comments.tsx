@@ -15,7 +15,12 @@ export default function Comments({ slug }: { slug: string }) {
       {loadComments ? (
         <CommentsComponent commentsConfig={siteMetadata.comments} slug={slug} />
       ) : (
-        <button onClick={() => setLoadComments(true)}>Load Comments</button>
+        <button
+          onClick={() => setLoadComments(true)}
+          className="bg-primary-500 hover:bg-primary-600 cursor-pointer rounded-md px-4 py-2 text-white transition-colors"
+        >
+          댓글 불러오기
+        </button>
       )}
     </>
   )

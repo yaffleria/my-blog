@@ -1,9 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'NenyaCastle',
-  author: 'NenyaCat',
-  headerTitle: 'NenyaCastle',
-  description: '고양이 네냐가 지키는 신비로운 성에서 전하는 투자 인사이트와 기술 이야기',
+  title: "Yaffleria's Blog",
+  author: 'Yaffleria',
+  headerTitle: "Yaffleria's Blog",
+  description: '개인 투자자를 위한 기업 분석과 투자 인사이트',
   language: 'ko-KR',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://www.yaffleria.com',
@@ -12,7 +12,7 @@ const siteMetadata = {
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.jpg`,
   email: 'yaffleria@gmail.com',
   // github: 'https://github.com/yaffleria', // 비활성화: 개인정보 최소화
-  x: 'https://x.com/nenyacat',
+  x: 'https://x.com/yaffleria',
   locale: 'ko-KR',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
@@ -51,7 +51,7 @@ const siteMetadata = {
     // content security policy in the `next.config.js` file.
     // Select a provider and use the environment variables associated to it
     // https://vercel.com/docs/environment-variables
-    provider: '', // supported providers: giscus, utterances, disqus - 비활성화: 빈 문자열
+    provider: 'giscus', // supported providers: giscus, utterances, disqus
     giscusConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
@@ -65,9 +65,9 @@ const siteMetadata = {
       metadata: '0',
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
-      theme: 'light',
+      theme: 'preferred_color_scheme',
       // theme when dark mode
-      darkTheme: 'transparent_dark',
+      darkTheme: 'dark_dimmed',
       // If the theme option above is set to 'custom`
       // please provide a link below to your custom theme css file.
       // example: https://giscus.app/themes/custom_example.css

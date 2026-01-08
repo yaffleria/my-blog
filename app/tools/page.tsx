@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
-import { Stone, Bitcoin, Dices } from 'lucide-react'
+import { Stone, Bitcoin } from 'lucide-react'
 
 export const metadata = genPageMetadata({ title: 'Tools' })
 
@@ -18,13 +18,6 @@ const tools = [
     href: '/tools/crypto-premium',
     icon: Bitcoin,
     color: 'text-orange-500 dark:text-orange-400',
-  },
-  {
-    title: '로또 번호 생성기',
-    description: '행운의 로또 번호를 무료로 생성해보세요! 🎰',
-    href: '/tools/lotto-generator',
-    icon: Dices,
-    color: 'text-purple-500 dark:text-purple-400',
   },
 ]
 
