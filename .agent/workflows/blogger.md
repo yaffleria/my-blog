@@ -33,7 +33,8 @@ We focus exclusively on "Money" keywords. No low-RPM tech tutorials.
 - **Monetization Tactics**:
   - **The Hook**: "I built a calculator to check if IRP is worth it for you." (Tool-led growth).
   - **Structure**: Logical headers (`##`) for ad placement.
-  - **Retention**: Embed **Interactive Tools** (Calculators, Simulators) in every post.
+  - **Retention**: Embed **Interactive Tools** (Calculators, Simulators) when applicable. Not required for book reviews or essay-style posts.
+  - **Affiliate Links**: Include book purchase links (YES24, etc.) for book review posts.
 
 ## 3. Technical Architecture: The "Platform"
 
