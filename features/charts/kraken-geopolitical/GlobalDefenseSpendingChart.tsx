@@ -34,7 +34,7 @@ type TextContent = {
 
 const TEXTS: Record<'ko' | 'en', TextContent> = {
   ko: {
-    title: '🌍 글로벌 군사비 지출 추이 (2020-2026E)',
+    title: '글로벌 군사비 지출 추이 (2020-2026E)',
     subtitle: '전 세계 국방비가 역대 최고치를 기록하며 Kraken의 TAM 확대',
     global: '전 세계',
     us: '미국',
@@ -50,7 +50,7 @@ const TEXTS: Record<'ko' | 'en', TextContent> = {
     },
   },
   en: {
-    title: '🌍 Global Defense Spending Trend (2020-2026E)',
+    title: 'Global Defense Spending Trend (2020-2026E)',
     subtitle: "Global defense spending hits record highs, expanding Kraken's TAM",
     global: 'Global',
     us: 'USA',
@@ -95,17 +95,15 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label, l
   if (active && payload && payload.length) {
     const event = label ? t.events[label] : ''
     return (
-      <div className="rounded-lg border border-gray-200 bg-white/95 p-4 shadow-xl backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/95">
-        <p className="mb-2 text-lg font-bold text-gray-900 dark:text-white">{label}</p>
+      <div className="rounded-lg border border-neutral-700 bg-neutral-900/95 p-4 shadow-xl backdrop-blur-sm">
+        <p className="mb-2 text-lg font-bold text-white">{label}</p>
         {payload.map((entry, index) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
             {entry.name}: ${entry.value.toFixed(2)}T
           </p>
         ))}
         {event && (
-          <p className="mt-2 border-t border-gray-200 pt-2 text-xs text-orange-600 dark:border-gray-600 dark:text-orange-400">
-            📌 {event}
-          </p>
+          <p className="mt-2 border-t border-neutral-700 pt-2 text-xs text-rose-400">⚡ {event}</p>
         )}
       </div>
     )
@@ -123,10 +121,10 @@ export default function GlobalDefenseSpendingChart({
   }))
 
   return (
-    <div className="my-8 rounded-2xl border border-gray-200 bg-linear-to-br from-slate-50 to-slate-100 p-6 shadow-lg dark:border-gray-700 dark:from-gray-800 dark:to-gray-900">
+    <div className="my-8 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 shadow-2xl">
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t.title}</h3>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{t.subtitle}</p>
+        <h3 className="text-xl font-bold text-white">{t.title}</h3>
+        <p className="mt-1 text-sm text-neutral-400">{t.subtitle}</p>
       </div>
 
       <div className="h-80 w-full">
@@ -134,34 +132,34 @@ export default function GlobalDefenseSpendingChart({
           <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorSpending" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
-                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                <stop offset="5%" stopColor="#dc2626" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#dc2626" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorUS" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#10b981" stopOpacity={0.4} />
-                <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.4} />
+                <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorChina" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.4} />
-                <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                <stop offset="5%" stopColor="#78716c" stopOpacity={0.4} />
+                <stop offset="95%" stopColor="#78716c" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
-            <XAxis dataKey="year" stroke="#6b7280" fontSize={12} />
-            <YAxis stroke="#6b7280" fontSize={12} tickFormatter={(value) => `$${value}T`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#404040" opacity={0.5} />
+            <XAxis dataKey="year" stroke="#a3a3a3" fontSize={12} />
+            <YAxis stroke="#a3a3a3" fontSize={12} tickFormatter={(value) => `$${value}T`} />
             <Tooltip content={<CustomTooltip locale={locale} />} />
             <Legend />
             <ReferenceLine
               x="2022"
-              stroke="#f97316"
+              stroke="#dc2626"
               strokeDasharray="5 5"
-              label={{ value: t.ukraineWar, fill: '#f97316', fontSize: 10 }}
+              label={{ value: t.ukraineWar, fill: '#dc2626', fontSize: 10 }}
             />
             <Area
               type="monotone"
               dataKey="spending"
               name={t.global}
-              stroke="#3b82f6"
+              stroke="#dc2626"
               fillOpacity={1}
               fill="url(#colorSpending)"
               strokeWidth={3}
@@ -170,7 +168,7 @@ export default function GlobalDefenseSpendingChart({
               type="monotone"
               dataKey="us"
               name={t.us}
-              stroke="#10b981"
+              stroke="#f59e0b"
               fillOpacity={1}
               fill="url(#colorUS)"
               strokeWidth={2}
@@ -179,7 +177,7 @@ export default function GlobalDefenseSpendingChart({
               type="monotone"
               dataKey="china"
               name={t.china}
-              stroke="#ef4444"
+              stroke="#78716c"
               fillOpacity={1}
               fill="url(#colorChina)"
               strokeWidth={2}
@@ -188,18 +186,18 @@ export default function GlobalDefenseSpendingChart({
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-4 text-center">
-        <div className="rounded-lg bg-blue-50 p-3 dark:bg-blue-900/30">
-          <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">+9.4%</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.yoyGrowth}</p>
+      <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+        <div className="rounded-lg border border-rose-900/50 bg-rose-950/30 p-3">
+          <p className="text-2xl font-bold text-rose-500">+9.4%</p>
+          <p className="text-xs text-neutral-500">{t.yoyGrowth}</p>
         </div>
-        <div className="rounded-lg bg-emerald-50 p-3 dark:bg-emerald-900/30">
-          <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">$2.718T</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.recordHigh}</p>
+        <div className="rounded-lg border border-amber-900/50 bg-amber-950/30 p-3">
+          <p className="text-2xl font-bold text-amber-500">$2.718T</p>
+          <p className="text-xs text-neutral-500">{t.recordHigh}</p>
         </div>
-        <div className="rounded-lg bg-orange-50 p-3 dark:bg-orange-900/30">
-          <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">7.4%</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.cagr}</p>
+        <div className="rounded-lg border border-neutral-800 bg-neutral-800/30 p-3">
+          <p className="text-2xl font-bold text-neutral-400">7.4%</p>
+          <p className="text-xs text-neutral-500">{t.cagr}</p>
         </div>
       </div>
     </div>

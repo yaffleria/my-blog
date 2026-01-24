@@ -5,8 +5,6 @@ import React, { useState } from 'react'
 interface Partner {
   name: string
   type: 'prime' | 'government' | 'alliance'
-  color: string
-  bgColor: string
   initial: string
   description: string
   products: string[]
@@ -112,8 +110,6 @@ const getPartners = (t: TextContent): Partner[] => [
   {
     name: 'Anduril Industries',
     type: 'prime',
-    color: 'from-violet-500 to-purple-600',
-    bgColor: 'bg-violet-100 dark:bg-violet-900/30',
     initial: 'A',
     description: t.partners.anduril.description,
     products: ['Dive-LD Battery/Sonar', 'Ghost Shark', 'Copperhead'],
@@ -123,8 +119,6 @@ const getPartners = (t: TextContent): Partner[] => [
   {
     name: 'HII (Huntington Ingalls)',
     type: 'prime',
-    color: 'from-blue-500 to-cyan-600',
-    bgColor: 'bg-blue-100 dark:bg-blue-900/30',
     initial: 'H',
     description: t.partners.hii.description,
     products: ['REMUS UUV Sonar'],
@@ -134,8 +128,6 @@ const getPartners = (t: TextContent): Partner[] => [
   {
     name: 'Royal Australian Navy',
     type: 'government',
-    color: 'from-emerald-500 to-teal-600',
-    bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
     initial: 'AU',
     description: t.partners.ran.description,
     products: ['Ghost Shark XLUUV'],
@@ -145,8 +137,6 @@ const getPartners = (t: TextContent): Partner[] => [
   {
     name: 'NATO',
     type: 'alliance',
-    color: 'from-sky-500 to-blue-600',
-    bgColor: 'bg-sky-100 dark:bg-sky-900/30',
     initial: 'N',
     description: t.partners.nato.description,
     products: ['USV System', 'Subsea Surveil.'],
@@ -163,13 +153,13 @@ const StatusBadge = ({
   labels: { growing: string; active: string; potential: string }
 }) => {
   const styles = {
-    growing: 'bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300',
-    active: 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300',
-    potential: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300',
+    growing: 'border-rose-800 bg-rose-950/50 text-rose-400',
+    active: 'border-amber-800 bg-amber-950/50 text-amber-400',
+    potential: 'border-neutral-700 bg-neutral-800 text-neutral-400',
   }
   return (
     <span
-      className={`rounded-full px-2 py-0.5 text-xs font-medium ${styles[status as keyof typeof styles]}`}
+      className={`rounded-full border px-2 py-0.5 text-xs font-medium ${styles[status as keyof typeof styles]}`}
     >
       {labels[status as keyof typeof labels]}
     </span>
@@ -182,63 +172,53 @@ export default function PartnershipEcosystem({ locale = 'ko' }: PartnershipEcosy
   const partners = getPartners(t)
 
   return (
-    <div className="my-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-900">
-      <div className="dark:to-gray-850 border-b border-gray-200 bg-linear-to-r from-gray-50 to-gray-100 px-6 py-4 dark:border-gray-700 dark:from-gray-800">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t.title}</h3>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{t.subtitle}</p>
+    <div className="my-8 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900 shadow-2xl">
+      <div className="border-b border-neutral-800 px-6 py-4">
+        <h3 className="text-xl font-bold text-white">{t.title}</h3>
+        <p className="mt-1 text-sm text-neutral-500">{t.subtitle}</p>
       </div>
       <div className="grid gap-4 p-6 md:grid-cols-2">
         {partners.map((p) => (
           <button
             key={p.name}
             onClick={() => setSelected(selected?.name === p.name ? null : p)}
-            className={`group cursor-pointer rounded-xl border border-gray-200 p-4 text-left transition-all duration-200 hover:border-gray-300 hover:shadow-lg dark:border-gray-700 dark:hover:border-gray-600 ${
+            className={`group cursor-pointer rounded-xl border border-neutral-800 bg-neutral-800/50 p-4 text-left transition-all duration-200 hover:border-neutral-700 hover:bg-neutral-800 ${
               selected?.name === p.name
-                ? 'ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900'
+                ? 'ring-2 ring-rose-500 ring-offset-2 ring-offset-neutral-900'
                 : ''
-            } bg-white dark:bg-gray-800`}
+            }`}
           >
             <div className="flex items-start gap-4">
-              <div
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br ${p.color} text-lg font-bold text-white shadow-lg`}
-              >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-rose-800 bg-rose-950/50 text-lg font-bold text-rose-400">
                 {p.initial}
               </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h4 className="truncate font-semibold text-gray-900 dark:text-white">{p.name}</h4>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h4 className="font-semibold text-white">{p.name}</h4>
                   <StatusBadge status={p.status} labels={t.labels.status} />
                 </div>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{p.description}</p>
+                <p className="mt-1 text-sm text-neutral-400">{p.description}</p>
               </div>
             </div>
           </button>
         ))}
       </div>
       {selected && (
-        <div className={`mx-6 mb-6 rounded-xl ${selected.bgColor} p-4`}>
+        <div className="mx-6 mb-6 rounded-xl border border-neutral-700 bg-neutral-800 p-4">
           <div className="flex items-center gap-3">
-            <div
-              className={`flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br ${selected.color} text-sm font-bold text-white`}
-            >
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-rose-800 bg-rose-950/50 text-sm font-bold text-rose-400">
               {selected.initial}
             </div>
-            <h4 className="font-semibold text-gray-900 dark:text-white">{selected.name}</h4>
+            <h4 className="font-semibold text-white">{selected.name}</h4>
           </div>
           <div className="mt-3 grid gap-2 text-sm">
             <div>
-              <span className="font-medium text-gray-700 dark:text-gray-300">
-                {t.labels.products}:
-              </span>
-              <span className="ml-2 text-gray-600 dark:text-gray-400">
-                {selected.products.join(', ')}
-              </span>
+              <span className="font-medium text-neutral-400">{t.labels.products}:</span>
+              <span className="ml-2 text-neutral-300">{selected.products.join(', ')}</span>
             </div>
             <div>
-              <span className="font-medium text-gray-700 dark:text-gray-300">
-                {t.labels.value}:
-              </span>
-              <span className="ml-2 text-gray-600 dark:text-gray-400">{selected.value}</span>
+              <span className="font-medium text-neutral-400">{t.labels.value}:</span>
+              <span className="ml-2 text-neutral-300">{selected.value}</span>
             </div>
           </div>
         </div>

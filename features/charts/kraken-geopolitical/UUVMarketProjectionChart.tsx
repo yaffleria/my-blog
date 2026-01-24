@@ -4,7 +4,6 @@ import React from 'react'
 import {
   ComposedChart,
   Bar,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -34,7 +33,7 @@ type TextContent = {
 
 const TEXTS: Record<'ko' | 'en', TextContent> = {
   ko: {
-    title: '🤖 글로벌 UUV 시장 전망 (2023-2032)',
+    title: '글로벌 UUV 시장 전망 (2023-2032)',
     subtitle: '무인 잠수정 시장 급성장 속 Kraken의 점유율 확대 추이',
     military: '군사용',
     commercial: '상업용',
@@ -47,7 +46,7 @@ const TEXTS: Record<'ko' | 'en', TextContent> = {
     },
   },
   en: {
-    title: '🤖 Global UUV Market Projection (2023-2032)',
+    title: 'Global UUV Market Projection (2023-2032)',
     subtitle: "Kraken's growing market share amidst rapid UUV market expansion",
     military: 'Military',
     commercial: 'Commercial',
@@ -93,8 +92,8 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
 }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded-lg border border-gray-200 bg-white/95 p-4 shadow-xl backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/95">
-        <p className="mb-2 text-lg font-bold text-gray-900 dark:text-white">{label}</p>
+      <div className="rounded-lg border border-neutral-700 bg-neutral-900/95 p-4 shadow-xl backdrop-blur-sm">
+        <p className="mb-2 text-lg font-bold text-white">{label}</p>
         {payload.map((entry, index) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
             {entry.name}: {entry.name === krakenShareLabel ? `${entry.value}%` : `$${entry.value}B`}
@@ -109,10 +108,10 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
 export default function UUVMarketProjectionChart({ locale = 'ko' }: UUVMarketProjectionChartProps) {
   const t = TEXTS[locale]
   return (
-    <div className="my-8 rounded-2xl border border-gray-200 bg-linear-to-br from-indigo-50 to-purple-50 p-6 shadow-lg dark:border-gray-700 dark:from-indigo-900/30 dark:to-purple-900/30">
+    <div className="my-8 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 shadow-2xl">
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t.title}</h3>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{t.subtitle}</p>
+        <h3 className="text-xl font-bold text-white">{t.title}</h3>
+        <p className="mt-1 text-sm text-neutral-400">{t.subtitle}</p>
       </div>
 
       <div className="h-80 w-full">
@@ -120,26 +119,26 @@ export default function UUVMarketProjectionChart({ locale = 'ko' }: UUVMarketPro
           <ComposedChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorMilitary" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.3} />
+                <stop offset="5%" stopColor="#dc2626" stopOpacity={0.9} />
+                <stop offset="95%" stopColor="#dc2626" stopOpacity={0.4} />
               </linearGradient>
               <linearGradient id="colorCommercial" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.3} />
+                <stop offset="5%" stopColor="#78716c" stopOpacity={0.9} />
+                <stop offset="95%" stopColor="#78716c" stopOpacity={0.4} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
-            <XAxis dataKey="year" stroke="#6b7280" fontSize={12} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#404040" opacity={0.5} />
+            <XAxis dataKey="year" stroke="#a3a3a3" fontSize={12} />
             <YAxis
               yAxisId="left"
-              stroke="#6b7280"
+              stroke="#a3a3a3"
               fontSize={12}
               tickFormatter={(value) => `$${value}B`}
             />
             <YAxis
               yAxisId="right"
               orientation="right"
-              stroke="#10b981"
+              stroke="#f59e0b"
               fontSize={12}
               tickFormatter={(value) => `${value}%`}
             />
@@ -166,32 +165,32 @@ export default function UUVMarketProjectionChart({ locale = 'ko' }: UUVMarketPro
               type="monotone"
               dataKey="krakenShare"
               name={t.krakenShare}
-              stroke="#10b981"
-              fill="#10b981"
-              fillOpacity={0.2}
+              stroke="#f59e0b"
+              fill="#f59e0b"
+              fillOpacity={0.15}
               strokeWidth={3}
-              dot={{ fill: '#10b981', strokeWidth: 2 }}
+              dot={{ fill: '#f59e0b', strokeWidth: 2, r: 4 }}
             />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-        <div className="rounded-lg bg-purple-100 p-3 text-center dark:bg-purple-900/40">
-          <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">$8.14B</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.stats.marketSize}</p>
+        <div className="rounded-lg border border-rose-900/50 bg-rose-950/30 p-3 text-center">
+          <p className="text-2xl font-bold text-rose-500">$8.14B</p>
+          <p className="text-xs text-neutral-500">{t.stats.marketSize}</p>
         </div>
-        <div className="rounded-lg bg-cyan-100 p-3 text-center dark:bg-cyan-900/40">
-          <p className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">13.5%</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.stats.cagr}</p>
+        <div className="rounded-lg border border-amber-900/50 bg-amber-950/30 p-3 text-center">
+          <p className="text-2xl font-bold text-amber-500">13.5%</p>
+          <p className="text-xs text-neutral-500">{t.stats.cagr}</p>
         </div>
-        <div className="rounded-lg bg-emerald-100 p-3 text-center dark:bg-emerald-900/40">
-          <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">70%</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.stats.militaryShare}</p>
+        <div className="rounded-lg border border-neutral-800 bg-neutral-800/30 p-3 text-center">
+          <p className="text-2xl font-bold text-neutral-400">70%</p>
+          <p className="text-xs text-neutral-500">{t.stats.militaryShare}</p>
         </div>
-        <div className="rounded-lg bg-orange-100 p-3 text-center dark:bg-orange-900/40">
-          <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">8%+</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">{t.stats.targetShare}</p>
+        <div className="rounded-lg border border-rose-900/50 bg-rose-950/30 p-3 text-center">
+          <p className="text-2xl font-bold text-rose-500">8%+</p>
+          <p className="text-xs text-neutral-500">{t.stats.targetShare}</p>
         </div>
       </div>
     </div>
