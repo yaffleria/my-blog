@@ -27,7 +27,7 @@ export const metadata = genPageMetadata({
     description:
       '한국 금값이 국제 시세보다 얼마나 비쌀까요? KRX vs 국제 금 시세 실시간 비교 분석 (김프 확인).',
     type: 'website',
-    images: ['/static/images/logo.jpg'],
+    images: ['/static/images/charlotte.jpg'],
   },
 })
 

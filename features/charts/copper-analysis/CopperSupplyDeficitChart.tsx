@@ -22,7 +22,7 @@ interface CopperSupplyDeficitChartProps {
 export default function CopperSupplyDeficitChart({
   title = 'Projected Copper Supply vs Demand Deficit',
   height = 400,
-  description = '단위: 천 톤 (Thousand Tonnes) | 막대: 공급/수요, 선: 공급 부족분 (Deficit)',
+  description = 'Unit: Thousand Tonnes | Bars: Supply/Demand, Line: Supply Deficit',
 }: CopperSupplyDeficitChartProps) {
   const data = [
     { year: '2024', Supply: 26000, Demand: 25800, Deficit: 200 },

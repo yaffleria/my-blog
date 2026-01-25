@@ -2,7 +2,7 @@ import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
-import { Space_Grotesk } from 'next/font/google'
+import { Space_Grotesk, Inter } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
@@ -20,6 +20,12 @@ const space_grotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
 })
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
@@ -34,7 +40,7 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
-    images: ['/static/images/logo.jpg'],
+    images: ['/static/images/charlotte.jpg'],
     locale: 'ko_KR',
     type: 'website',
   },
@@ -58,11 +64,11 @@ export const metadata: Metadata = {
   twitter: {
     title: siteMetadata.title,
     card: 'summary_large_image',
-    images: ['/static/images/logo.jpg'],
+    images: ['/static/images/charlotte.jpg'],
   },
   icons: {
-    icon: '/static/images/logo-transparent.png',
-    apple: '/static/images/logo-transparent.png',
+    icon: '/static/images/charlotte.jpg',
+    apple: '/static/images/charlotte.jpg',
   },
 }
 
@@ -72,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${space_grotesk.variable} ${inter.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />

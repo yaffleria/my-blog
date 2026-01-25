@@ -7,7 +7,6 @@ export default function Footer() {
     <footer>
       <div className="mt-16 flex flex-col items-center">
         <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
           <SocialIcon kind="github" href={siteMetadata.github} size={6} />
           <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
           <SocialIcon kind="youtube" href={siteMetadata.youtube} size={6} />
@@ -28,16 +27,16 @@ export default function Footer() {
         </div>
         <div className="mb-8 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400">
           <Link href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300">
-            개인정보처리방침
+            Privacy Policy
           </Link>
           <Link href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300">
-            이용약관
+            Terms of Service
           </Link>
           <Link href="/disclaimer" className="hover:text-gray-700 dark:hover:text-gray-300">
-            면책조항
+            Disclaimer
           </Link>
           <Link href="/contact" className="hover:text-gray-700 dark:hover:text-gray-300">
-            연락처
+            Contact
           </Link>
         </div>
       </div>

@@ -3,12 +3,11 @@ import Disclaimer from '@/components/ui/Disclaimer'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
-import Comments from '@/components/ui/Comments'
 import Link from '@/components/ui/Link'
 import PageTitle from '@/components/ui/PageTitle'
 import SectionContainer from '@/components/layout/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ui/ScrollTopAndComment'
+import ScrollTop from '@/components/ui/ScrollTop'
 import { decodeHtmlEntities } from '@/lib/utils'
 
 interface LayoutProps {
@@ -49,11 +48,6 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
               <Disclaimer isEnglish={isEnglish} />
             </div>
-            {siteMetadata.comments && (
-              <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-                <Comments slug={slug} />
-              </div>
-            )}
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                 {prev && prev.path && (
@@ -83,6 +77,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </div>
         </div>
       </article>
+      <ScrollTop />
     </SectionContainer>
   )
 }

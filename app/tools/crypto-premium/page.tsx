@@ -29,7 +29,7 @@ export const metadata = genPageMetadata({
     description:
       '국내(업비트) vs 해외(코인게코) 가격 차이를 실시간 확인. 비트코인, 테더 김치프리미엄 계산기.',
     type: 'website',
-    images: ['/static/images/logo.jpg'],
+    images: ['/static/images/charlotte.jpg'],
   },
 })
 

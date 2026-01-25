@@ -2,14 +2,13 @@ import { ReactNode } from 'react'
 import Disclaimer from '@/components/ui/Disclaimer'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
-import Comments from '@/components/ui/Comments'
 import Link from '@/components/ui/Link'
 import PageTitle from '@/components/ui/PageTitle'
 import SectionContainer from '@/components/layout/SectionContainer'
 import Image from '@/components/ui/Image'
 import Tag from '@/components/ui/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ui/ScrollTopAndComment'
+import ScrollTop from '@/components/ui/ScrollTop'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import TableOfContents from '@/components/mdx/TableOfContents'
 import { decodeHtmlEntities } from '@/lib/utils'
@@ -117,14 +116,6 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 {` • `}
                 <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
-              {siteMetadata.comments && (
-                <div
-                  className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
-                >
-                  <Comments slug={slug} />
-                </div>
-              )}
             </div>
             <footer>
               <div className="divide-gray-200 text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700">
@@ -181,6 +172,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           </div>
         </div>
       </article>
+      <ScrollTop />
     </SectionContainer>
   )
 }

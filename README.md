@@ -1,4 +1,4 @@
-# Yaffleria's Blog
+# Charlotte's Blog
 
 개인 투자자를 위한 기업 분석과 투자 인사이트를 제공하는 **Yaffleria**의 소스 코드 저장소입니다.
 

@@ -7,13 +7,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app www.googletagmanager.com www.google-analytics.com https://va.vercel-scripts.com https://vercel.live https://t1.kakaocdn.net https://dapi.kakao.com http://dapi.kakao.com http://t1.daumcdn.net https://t1.daumcdn.net;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com https://vercel.live https://t1.kakaocdn.net https://dapi.kakao.com http://dapi.kakao.com http://t1.daumcdn.net https://t1.daumcdn.net;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
   media-src *.s3.amazonaws.com;
   connect-src *;
   font-src 'self' https://vercel.live;
-  frame-src giscus.app https://www.google.com www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://vercel.live;
+  frame-src https://www.youtube.com https://www.youtube-nocookie.com https://vercel.live;
 `
 
 const securityHeaders = [

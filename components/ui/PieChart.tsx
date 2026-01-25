@@ -57,7 +57,7 @@ const PieChart: React.FC<PieChartProps> = ({
   // Adjust radius and height for mobile
   // On mobile, names can be long, so we need extra space for labels
   const effectiveOuterRadius = isMobile ? 80 : propsOuterRadius
-  const containerHeight = isMobile ? 350 : 450
+  const containerHeight = isMobile ? 250 : 300
 
   const renderInnerLabel = ({
     cx,
@@ -155,7 +155,7 @@ const PieChart: React.FC<PieChartProps> = ({
   return (
     <div className="my-10 flex flex-col items-center justify-center rounded-2xl bg-white/50 p-6 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm dark:bg-gray-900/50 dark:ring-gray-800">
       {title && (
-        <h3 className="mb-8 text-center text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        <h3 className="mb-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h3>
       )}
