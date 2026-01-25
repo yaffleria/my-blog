@@ -43,7 +43,7 @@ export default function ContactPage() {
           {/* X(Twitter) Card */}
           <div className="rounded-lg border border-gray-200 p-6 dark:border-gray-700">
             <div className="mb-4 flex items-center">
-              <SocialIcon kind="x" href="https://x.com/nenyacat" size={8} />
+              <SocialIcon kind="x" href="https://x.com/charlotteprism" size={8} />
               <h3 className="ml-3 text-xl font-bold text-gray-900 dark:text-gray-100">
                 X (Twitter)
               </h3>
@@ -52,12 +52,12 @@ export default function ContactPage() {
               For quick communication or simple questions, please contact me on X.
             </p>
             <a
-              href="https://x.com/nenyacat"
+              href="https://x.com/charlotteprism"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block rounded-lg bg-gray-800 px-4 py-2 text-white transition-colors hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"
             >
-              @nenyacat
+              @charlotteprism
             </a>
           </div>
         </div>

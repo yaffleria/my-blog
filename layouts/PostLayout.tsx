@@ -41,7 +41,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
   return (
     <SectionContainer>
-      <ScrollTopAndComment />
+      <ScrollTop />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
@@ -110,10 +110,6 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
               <Disclaimer isEnglish={isEnglish} />
               <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(path)} rel="nofollow">
-                  Discuss on TwitterX
-                </Link>
-                {` • `}
                 <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
             </div>

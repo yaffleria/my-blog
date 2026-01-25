@@ -2,7 +2,7 @@
 
 import { decodeHtmlEntities, getCompleteImageUrl } from '@/lib/utils'
 import { useClipboard } from '@/hooks/useClipboard'
-import { useKakaoShare } from '@/hooks/useKakaoShare'
+
 import siteMetadata from '@/data/siteMetadata'
 
 interface SocialShareButtonsProps {
@@ -19,7 +19,6 @@ export default function SocialShareButtons({
   image,
 }: SocialShareButtonsProps) {
   const { copied, copy } = useClipboard()
-  const { shareToKakao } = useKakaoShare()
 
   // Decode HTML entities for clean display in social shares
   const decodedTitle = decodeHtmlEntities(title)
@@ -32,15 +31,6 @@ export default function SocialShareButtons({
   )
 
   const handleCopyLink = () => copy(url)
-
-  const handleShareToKakao = () => {
-    shareToKakao({
-      url,
-      title: decodedTitle,
-      description: decodedSummary || siteMetadata.description,
-      image: getCompleteImageUrl(image),
-    })
-  }
 
   const shareToX = () => {
     const xShareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
@@ -93,17 +83,6 @@ export default function SocialShareButtons({
               />
             </svg>
           )}
-        </button>
-
-        {/* 카카오톡 */}
-        <button
-          onClick={handleShareToKakao}
-          className={`${buttonBaseClass} bg-[#FEE500] text-[#191919] hover:bg-[#FDD835]`}
-          aria-label="카카오톡으로 공유"
-        >
-          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.643 1.733 4.974 4.348 6.321-.149.539-.544 1.957-.623 2.262-.098.378.138.373.291.271.12-.08 1.918-1.3 2.688-1.823.428.062.868.095 1.316.095 5.523 0 10-3.463 10-7.691C22 6.463 17.523 3 12 3z" />
-          </svg>
         </button>
 
         {/* X (Twitter) */}

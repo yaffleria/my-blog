@@ -50,3 +50,5 @@ yarn-error.log*
 # AI & Dev tools
 .gemini
 .devcontainer
+tsconfig.tsbuildinfo
+.turbo
