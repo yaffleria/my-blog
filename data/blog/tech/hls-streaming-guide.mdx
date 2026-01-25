@@ -170,10 +170,13 @@ m3u8 파일에 명시된 키서버를 통해 암호화 키를 받아오는 흐�
 
 **전체 재생 및 인증 흐름:**
 
-1.  **마스터/미디어 플레이리스트 요청**: 스트림 정보를 파악하고 네트워크에 맞는 화질 선택.
-2.  **키 요청**: 암호화된 콘텐츠를 풀기 위해 m3u8에 명시된 키서버로 인증 토큰과 함께 요청.
-3.  **검증 및 발급**: 키서버는 토큰을 검증하고, 유효하면 AES-128 키(16바이트)를 반환.
-4.  **다운로드 및 복호화**: 클라이언트는 이 키로 암호화된 `.ts` 조각을 실시간으로 복호화하여 재생.
+1.  <strong>마스터/미디어 플레이리스트 요청</strong>: 스트림 정보를 파악하고 네트워크에 맞는 화질
+    선택.
+2.  <strong>키 요청</strong>: 암호화된 콘텐츠를 풀기 위해 m3u8에 명시된 키서버로 인증 토큰과 함께
+    요청.
+3.  <strong>검증 및 발급</strong>: 키서버는 토큰을 검증하고, 유효하면 AES-128 키(16바이트)를 반환.
+4.  <strong>다운로드 및 복호화</strong>: 클라이언트는 이 키로 암호화된 `.ts` 조각을 실시간으로
+    복호화하여 재생.
 
 <details>
 <summary>시퀀스 다이어그램 코드 보기</summary>
@@ -215,9 +218,10 @@ sequenceDiagram
 
 HLS는 여러 단계의 보호 장치 덕분에 안전합니다.
 
-1.  **조각난 구조**: 파일 하나가 아닌 수십, 수백 개의 조각이라 탈취가 번거로움.
-2.  **키 보호**: 인증된 사용자에게만 키 발급, 토큰 검증, 세션 관리 등 추가 보안 적용 가능.
-3.  **시간 제한 토큰**: URL에 유효 시간을 설정하여 링크 공유 방지.
+1.  <strong>조각난 구조</strong>: 파일 하나가 아닌 수십, 수백 개의 조각이라 탈취가 번거로움.
+2.  <strong>키 보호</strong>: 인증된 사용자에게만 키 발급, 토큰 검증, 세션 관리 등 추가 보안 적용
+    가능.
+3.  <strong>시간 제한 토큰</strong>: URL에 유효 시간을 설정하여 링크 공유 방지.
 
 ## 클라이언트 구현 및 라이브러리
 
@@ -234,7 +238,7 @@ HLS는 여러 단계의 보호 장치 덕분에 안전합니다.
 
 // 2. hls.js 구현 예시 (React)
 
-hls.js는 브라우저 내부에서 **Transmuxing**(TS → MP4 실시간 변환)을 처리하여, 기본적으로 TS 재생을 지원하지 않는 브라우저에서도 재생이 가능하게 합니다.
+hls.js는 브라우저 내부에서 <strong>Transmuxing</strong>(TS → MP4 실시간 변환)을 처리하여, 기본적으로 TS 재생을 지원하지 않는 브라우저에서도 재생이 가능하게 합니다.
 
 ```tsx
 import { useEffect, useRef, useState } from 'react'
@@ -317,38 +321,40 @@ HLS 재생 문제가 발생했을 때, 원인이 클라이언트 코드인지 �
 
 #### 장시간 재생 시 끊김 (Token Expiry)
 
-- **증상**: 1시간 이상 긴 영상이나 플레이리스트 재생 중 뜬금없이 멈춤.
-- **원인**: 초기 로딩 시 받아온 인증 토큰이 만료(Expired)되어, 다음 세그먼트나 키 요청 시 401 에러 발생.
-- **해결**: `hls.on(Hls.Events.ERROR)`에서 `response.code === 401`을 감지하여 토큰을 갱신(Refresh)하고 재요청하는 로직 필수 구현.
+- <strong>증상</strong>: 1시간 이상 긴 영상이나 플레이리스트 재생 중 뜬금없이 멈춤.
+- <strong>원인</strong>: 초기 로딩 시 받아온 인증 토큰이 만료(Expired)되어, 다음 세그먼트나 키 요청
+  시 401 에러 발생.
+- <strong>해결</strong>: `hls.on(Hls.Events.ERROR)`에서 `response.code === 401`을 감지하여 토큰을
+  갱신(Refresh)하고 재요청하는 로직 필수 구현.
 
 #### 무한 로딩 (Infinite Loading)
 
-- **증상**: 스피너만 돌고 시작 안 됨.
-- **체크**:
-  - **CORS**: 개발자 도구 콘솔의 빨간 CORS 에러 확인. m3u8, ts, 키서버 도메인 모두 허용 필요.
-  - **Mixed Content**: HTTPS 페이지에서 HTTP 스트림 요청 시 차단됨.
+- <strong>증상</strong>: 스피너만 돌고 시작 안 됨.
+- <strong>체크</strong>: - <strong>CORS</strong>: 개발자 도구 콘솔의 빨간 CORS 에러 확인. m3u8, ts,
+  키서버 도메인 모두 허용 필요. - <strong>Mixed Content</strong>: HTTPS 페이지에서 HTTP 스트림 요청
+  시 차단됨.
 
 #### 멈춤 (Stalling)
 
-- **증상**: 잘 나오다가 특정 구간에서 멈춤.
-- **체크**:
-  - **Gap**: 세그먼트 번호가 중간에 비거나 누락되었는지 확인.
-  - **PTS (Presentation Time Stamp)**: 오디오/비디오 싱크가 틀어지면 hls.js가 맞추려다 멈출 수 있음.
-  - **Discontinuity**: 광고 삽입 등으로 속성이 변할 때 `#EXT-X-DISCONTINUITY` 태그 유무 확인.
+- <strong>증상</strong>: 잘 나오다가 특정 구간에서 멈춤.
+- <strong>체크</strong>: - <strong>Gap</strong>: 세그먼트 번호가 중간에 비거나 누락되었는지 확인. -
+  <strong>PTS (Presentation Time Stamp)</strong>: 오디오/비디오 싱크가 틀어지면 hls.js가 맞추려다
+  멈출 수 있음. - <strong>Discontinuity</strong>: 광고 삽입 등으로 속성이 변할 때
+  `#EXT-X-DISCONTINUITY` 태그 유무 확인.
 
 #### PC에선 되는데 iOS에서 안 됨 (가장 흔한 이슈)
 
-- **원인 1: 헤더 인증 불가 (Header Auth Fail)**
-  - **문제**: iOS(Safari)의 네이티브 플레이어는 개발자가 HTTP 요청 헤더를 조작할 수 없습니다 (`Authorization` 헤더 추가 불가).
-  - **해결**: **보안 토큰을 쿼리 스트링(Query String)이나 쿠키(Cookie)**로 넘겨야 합니다.
-  - **추천**: AWS CloudFront Signed URL 같은 **Presigned URL** 방식을 사용하여 URL 자체에 서명과 만료 시간을 포함시키세요.
+- <strong>원인 1: 헤더 인증 불가 (Header Auth Fail)</strong>- <strong>문제</strong>: iOS(Safari)의
+  네이티브 플레이어는 개발자가 HTTP 요청 헤더를 조작할 수 없습니다 (`Authorization` 헤더 추가 불가).
+  - <strong>해결</strong>: <strong>보안 토큰을 쿼리 파라미터(Query String)이나 쿠키(Cookie)</strong>
+  로 넘겨야 합니다. - <strong>추천</strong>: AWS CloudFront Signed URL 같은
+  <strong>Presigned URL</strong> 방식을 사용하여 URL 자체에 서명과 만료 시간을 포함시키세요.
 
-- **원인 2: 코덱 및 스펙 불일치**
-  - **증상**: 재생 버튼 눌러도 무반응이거나 검은 화면.
-  - **체크**:
-    - **Codec Profile**: 구형 iOS는 High Profile 미지원 가능성 (Main Profile 권장).
-    - **Frame Rate**: 가변 프레임 레이트(VFR)보다 고정 프레임 레이트(CFR) 권장.
-  - **해결**: Mac의 `mediastreamvalidator` 툴로 스트림 스펙 위반 검사.
+- <strong>원인 2: 코덱 및 스펙 불일치</strong>- <strong>증상</strong>: 재생 버튼 눌러도 무반응이거나
+  검은 화면. - <strong>체크</strong>: - <strong>Codec Profile</strong>: 구형 iOS는 High Profile
+  미지원 가능성 (Main Profile 권장). - <strong>Frame Rate</strong>: 가변 프레임 레이트(VFR)보다 고정
+  프레임 레이트(CFR) 권장. - <strong>해결</strong>: Mac의 `mediastreamvalidator` 툴로 스트림 스펙
+  위반 검사.
 
 ### 3. 키 관리 주의사항 (Key Rotation)
 
