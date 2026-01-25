@@ -15,10 +15,6 @@ import MarketSegmentationChart from '@/features/charts/kraken-robotics-earnings/
 import AnnualGuidanceChart from '@/features/charts/kraken-robotics-earnings/AnnualGuidanceChart'
 import Q3MetricsToggle from '@/features/charts/kraken-robotics-earnings/Q3MetricsToggle'
 import RelatedArticles from './RelatedArticles'
-import MastercardRevenueBreakdown from '@/features/charts/mastercard-earnings/MastercardRevenueBreakdown'
-import MarketShareChart from '@/features/charts/mastercard-earnings/MarketShareChart'
-import GrowthMetricsChart from '@/features/charts/mastercard-earnings/GrowthMetricsChart'
-import YieldSpreadChart from '@/features/charts/kodex-japan-reits/YieldSpreadChart'
 import GlobalDefenseSpendingChart from '@/features/charts/kraken-geopolitical/GlobalDefenseSpendingChart'
 import GeopoliticalConnectionDiagram from '@/features/charts/kraken-geopolitical/GeopoliticalConnectionDiagram'
 import UUVMarketProjectionChart from '@/features/charts/kraken-geopolitical/UUVMarketProjectionChart'
@@ -47,10 +43,6 @@ export const components: MDXComponents = {
   AnnualGuidanceChart,
   Q3MetricsToggle,
   RelatedArticles,
-  MastercardRevenueBreakdown,
-  MarketShareChart,
-  GrowthMetricsChart,
-  YieldSpreadChart,
   GlobalDefenseSpendingChart,
   GeopoliticalConnectionDiagram,
   UUVMarketProjectionChart,
