@@ -1,9 +1,5 @@
 {
-  "coupang": 1,
-  "geopolitics": 2,
   "investment": 4,
-  "e-commerce": 1,
-  "risk-management": 1,
   "stock": 1,
   "japan": 1,
   "warren-buffett": 1,
@@ -11,6 +7,13 @@
   "copper": 1,
   "ai": 1,
   "supercycle": 1,
+  "defense": 1,
+  "robotics": 1,
+  "geopolitics": 2,
+  "technology": 1,
+  "coupang": 1,
+  "e-commerce": 1,
+  "risk-management": 1,
   "hls": 1,
   "streaming": 1,
   "video": 1,
@@ -19,8 +22,5 @@
   "webview": 1,
   "frontend": 1,
   "mobile": 1,
-  "react": 1,
-  "defense": 1,
-  "robotics": 1,
-  "technology": 1
+  "react": 1
 }
