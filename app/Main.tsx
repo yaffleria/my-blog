@@ -84,7 +84,7 @@ export default function Home({ posts }) {
           </Link>
         </div>
       )}
-      {/* Newsletter 기능 비활성화 - API 연동 필요 */}
+      {/* Newsletter disabled - requires API integration */}
       {/* {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />

@@ -14,28 +14,28 @@ import {
 
 const data = [
   {
-    name: '금리차 확대',
-    subtitle: '(현재)',
+    name: 'Wider Gap',
+    subtitle: '(Current)',
     reitYield: 4.0,
     hedgePremium: 2.5,
     total: 6.5,
   },
   {
-    name: '금리차 유지',
+    name: 'Maintained Gap',
     subtitle: '',
     reitYield: 4.0,
     hedgePremium: 2.0,
     total: 6.0,
   },
   {
-    name: '금리차 축소',
+    name: 'Narrower Gap',
     subtitle: '',
     reitYield: 4.0,
     hedgePremium: 0.5,
     total: 4.5,
   },
   {
-    name: '금리 역전',
+    name: 'Inverted Gap',
     subtitle: '',
     reitYield: 4.0,
     hedgePremium: -1.0,
@@ -58,17 +58,17 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     return (
       <div className="rounded border border-gray-200 bg-white p-3 shadow-lg dark:border-gray-700 dark:bg-gray-800">
         <p className="mb-2 font-bold text-gray-900 dark:text-gray-100">{label}</p>
-        <p className="text-sm text-blue-600">REIT 배당: {payload[0].value.toFixed(1)}%</p>
+        <p className="text-sm text-blue-600">REIT Yield: {payload[0].value.toFixed(1)}%</p>
         <div className="mb-2 text-sm">
           {payload[1].value >= 0 ? (
-            <span className="text-green-600">헤지 프리미엄: +{payload[1].value.toFixed(1)}%</span>
+            <span className="text-green-600">Hedge Premium: +{payload[1].value.toFixed(1)}%</span>
           ) : (
-            <span className="text-red-500">헤지 비용: {payload[1].value.toFixed(1)}%</span>
+            <span className="text-red-500">Hedge Cost: {payload[1].value.toFixed(1)}%</span>
           )}
         </div>
         <div className="border-t border-gray-200 pt-2 dark:border-gray-700">
           <p className="font-bold text-gray-900 dark:text-white">
-            총 분배율: {(payload[0].value + payload[1].value).toFixed(1)}%
+            Total Distribution: {(payload[0].value + payload[1].value).toFixed(1)}%
           </p>
         </div>
       </div>
@@ -112,21 +112,21 @@ export default function YieldSpreadChart() {
   return (
     <div className="w-full rounded-lg bg-gray-50 p-4 font-sans shadow-sm dark:bg-gray-900">
       <h3 className="mb-2 text-center text-base font-bold text-gray-900 sm:text-lg dark:text-white">
-        금리차 시나리오별 예상 분배율
+        Expected Distribution Rate by Interest Rate Gap Scenario
       </h3>
       <div className="mb-3 text-center text-xs text-gray-500">
-        J-REIT 배당수익률 4.0% 가정 · 예시 데이터
+        Assumes 4.0% J-REIT Dividend Yield · Example Data
       </div>
 
-      {/* 범례 */}
+      {/* Legend */}
       <div className="mb-3 flex justify-center gap-6 text-xs sm:text-sm">
         <div className="flex items-center gap-1.5">
           <div className="h-3 w-3 rounded-sm bg-blue-500"></div>
-          <span className="text-gray-600 dark:text-gray-400">REIT 배당</span>
+          <span className="text-gray-600 dark:text-gray-400">REIT Yield</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="h-3 w-3 rounded-sm bg-emerald-500"></div>
-          <span className="text-gray-600 dark:text-gray-400">헤지 손익</span>
+          <span className="text-gray-600 dark:text-gray-400">Hedge P/L</span>
         </div>
       </div>
 

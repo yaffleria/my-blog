@@ -21,8 +21,6 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   const { path, slug, date, title } = content
   const decodedTitle = decodeHtmlEntities(title)
 
-  const isEnglish = path.startsWith('blog/en/') || path.startsWith('en/')
-
   return (
     <SectionContainer>
       <ScrollTop />
@@ -46,7 +44,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:divide-y-0 dark:divide-gray-700">
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
-              <Disclaimer isEnglish={isEnglish} />
+              <Disclaimer />
             </div>
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">

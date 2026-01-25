@@ -259,7 +259,7 @@ const getConnections = (): ArrowConnection[] => [
 ]
 
 export default function GeopoliticalConnectionDiagram({
-  locale = 'ko',
+  locale = 'en',
 }: GeopoliticalConnectionDiagramProps) {
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)

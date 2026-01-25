@@ -35,7 +35,7 @@ const TEXTS = {
   },
 }
 
-export default function ConnectionFlowDiagram({ locale = 'ko' }: ConnectionFlowDiagramProps) {
+export default function ConnectionFlowDiagram({ locale = 'en' }: ConnectionFlowDiagramProps) {
   const steps: FlowStep[] = TEXTS[locale].steps
 
   return (

@@ -62,7 +62,7 @@ export async function generateMetadata(props: {
       title: decodedTitle,
       description: decodedSummary,
       siteName: siteMetadata.title,
-      locale: post.language === 'ko' ? 'ko_KR' : 'en_US',
+      locale: 'en_US',
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
@@ -79,7 +79,7 @@ export async function generateMetadata(props: {
     alternates: {
       canonical: './',
       languages: {
-        [post.language || 'ko']: './',
+        'en-US': './',
       },
     },
   }

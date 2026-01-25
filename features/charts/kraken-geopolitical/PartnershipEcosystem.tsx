@@ -166,7 +166,7 @@ const StatusBadge = ({
   )
 }
 
-export default function PartnershipEcosystem({ locale = 'ko' }: PartnershipEcosystemProps) {
+export default function PartnershipEcosystem({ locale = 'en' }: PartnershipEcosystemProps) {
   const [selected, setSelected] = useState<Partner | null>(null)
   const t = TEXTS[locale]
   const partners = getPartners(t)

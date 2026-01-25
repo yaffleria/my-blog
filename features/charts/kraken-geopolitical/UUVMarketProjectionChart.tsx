@@ -105,7 +105,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
   return null
 }
 
-export default function UUVMarketProjectionChart({ locale = 'ko' }: UUVMarketProjectionChartProps) {
+export default function UUVMarketProjectionChart({ locale = 'en' }: UUVMarketProjectionChartProps) {
   const t = TEXTS[locale]
   return (
     <div className="my-8 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 shadow-2xl">

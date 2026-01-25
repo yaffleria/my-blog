@@ -25,7 +25,7 @@ import UUVMarketProjectionChart from '@/features/charts/kraken-geopolitical/UUVM
 import ThreeScenarioAnalysis from '@/features/charts/kraken-geopolitical/ThreeScenarioAnalysis'
 import PartnershipEcosystem from '@/features/charts/kraken-geopolitical/PartnershipEcosystem'
 import ConnectionFlowDiagram from '@/features/charts/kraken-geopolitical/ConnectionFlowDiagram'
-import BondYieldCalculator from '@/features/calculators/BondYieldCalculator'
+
 import BerkshireStakeChart from '@/features/charts/marubeni-analysis/BerkshireStakeChart'
 import CopperDemandChart from '@/features/charts/copper-analysis/CopperDemandChart'
 import CopperPriceForecastChart from '@/features/charts/copper-analysis/CopperPriceForecastChart'
@@ -57,10 +57,10 @@ export const components: MDXComponents = {
   ThreeScenarioAnalysis,
   PartnershipEcosystem,
   ConnectionFlowDiagram,
-  BondYieldCalculator,
+
   BerkshireStakeChart,
   CopperDemandChart,
   CopperPriceForecastChart,
   CopperSupplyDeficitChart,
-  // BlogNewsletterForm, // Newsletter 기능 비활성화 - API 연동 필요
+  // BlogNewsletterForm, // Newsletter disabled - requires API integration
 }

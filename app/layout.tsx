@@ -33,7 +33,15 @@ export const metadata: Metadata = {
     template: `%s | ${siteMetadata.title}`,
   },
   description: siteMetadata.description,
-  keywords: ['경제', '투자', '주식', '일상', '식당', '레스토랑', '카페'],
+  keywords: [
+    'economy',
+    'investing',
+    'stocks',
+    'finance',
+    'market analysis',
+    'dividend growth',
+    'economic moat',
+  ],
   manifest: '/manifest.json',
   openGraph: {
     title: siteMetadata.title,
@@ -41,7 +49,7 @@ export const metadata: Metadata = {
     url: './',
     siteName: siteMetadata.title,
     images: ['/static/images/charlotte.jpg'],
-    locale: 'ko_KR',
+    locale: 'en_US',
     type: 'website',
   },
   alternates: {

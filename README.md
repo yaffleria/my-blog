@@ -1,67 +1,56 @@
 # Charlotte's Blog
 
-개인 투자자를 위한 기업 분석과 투자 인사이트를 제공하는 **Yaffleria**의 소스 코드 저장소입니다.
+Source code repository for **Yaffleria**, providing corporate analysis and investment insights for individual investors.
 
-## 🌟 프로젝트 개요
+## 🌟 Project Overview
 
-이 프로젝트는 **Next.js** 기반의 정적 블로그 및 금융 도구 플랫폼입니다.
-사용자에게 깊이 있는 투자 분석 리포트와 실시간 금융 데이터를 시각화하는 도구를 제공하는 것을 목표로 합니다.
+This project is a **Next.js** based static blog focusing on deep investment analysis and data visualization.
 
-주요 특징:
+Key Features:
 
-- **MDX 기반 블로그**: 투자 리포트를 Markdown(MDX)으로 작성하여 풍부한 시각화와 함께 제공
-- **금융 도구**: 금 시세 프리미엄 계산기, 비트코인 김치프리미엄 확인 등 실용적인 도구 내장
-- **데이터 시각화**: Recharts를 활용한 동적인 차트 및 데이터 표현
+- **MDX-based Blog**: Investment reports written in Markdown (MDX) for rich visualization.
+- **Data Visualization**: Dynamic charts and data representation using Recharts.
+- **English-Only**: Content and interface optimized for a global audience.
 
 ---
 
-## 🏗️ 기술적 구조 (Project Architecture)
+## 🏗️ Project Architecture
 
-이 프로젝트는 확장성과 유지보수성을 위해 **하이브리드 버티컬 아키텍처(Hybrid Vertical Architecture)**를 따르고 있습니다.
-기능(Feature) 중심의 구조와 명확한 역할 분리를 통해 코드의 복잡도를 관리합니다.
+The project follows a **Hybrid Vertical Architecture** for scalability and maintainability.
 
-### 📂 디렉토리 구조 (Directory Overview)
+### 📂 Directory Overview
 
 #### `/app`
 
-Next.js App Router의 핵심 구조입니다.
+Core structure using Next.js App Router.
 
-- **`(blog)`**: 블로그 관련 페이지 라우트 그룹
-- **`(tools)`**: 금융 도구 및 유틸리티 관련 라우트 그룹
-  - `tools/`
-    - `_components/`: 도구 섹션 전용 컴포넌트 (Shared within Tools)
-    - `_services/`: 도구 섹션 전용 서비스/유틸리티 로직
-    - `[tool-name]/`: 개별 도구의 페이지 및 로직
+- **`blog/`**: Blog-related page routes and layouts.
+- **`tags/`**: Tag listing and filtering functionality.
+- **`about/`**: Author information and blog overview.
 
 #### `/features`
 
-특정 도메인이나 기능에 종속된 코드를 수직적으로 격리하여 관리합니다.
+Slightly isolated code base for specific domains or functionalities.
 
-- **`charts/`**: 특정 기업 분석이나 리포트에 사용되는 차트 컴포넌트 모음
-  - `[domain-name]/`: 개별 분석 주제별 서브 디렉토리 (예: `kraken-geopolitical`, `mastercard-earnings`)
+- **`charts/`**: Chart components used in specific corporate analyses or reports.
+  - `[domain-name]/`: Sub-directories for individual analysis topics (e.g., `kraken-geopolitical`, `mastercard-earnings`).
 
 #### `/components`
 
-전역에서 사용되는 재사용 가능한 컴포넌트입니다.
+Reusable components used across the site.
 
-- **`layout/`**: 글로벌 레이아웃 (Header, Footer, Navigation 등)
-- **`ui/`**: 범용 UI 컴포넌트 (Button, Card, Link, Tag 등 Design System 요소)
-- **`mdx/`**: 블로그 포스트 내에서 사용되는 MDX 전용 컴포넌트
+- **`layout/`**: Global layouts (Header, Footer, Navigation, etc.).
+- **`ui/`**: Universal UI components (Button, Card, Link, Tag, etc.).
+- **`mdx/`**: MDX-specific components used inside blog posts.
 
 #### `/lib` & `/data`
 
-- **`/lib`**: 공유 유틸리티 함수 및 설정
-- **`/data`**: 사이트 메타데이터, 내비게이션 링크 등 정적 데이터
+- **`/lib`**: Shared utility functions and configurations.
+- **`/data`**: Site metadata, navigation links, and blog content.
 
-### 📐 핵심 설계 원칙 (Key Design Principles)
+### 📐 Design Principles
 
-1.  **Vertical Slicing (수직적 분리)**
-    - 특정 기능(예: 특정 리포트의 차트들)과 관련된 코드는 `/features` 폴더 내에 함께 배치하여 응집도를 높입니다.
-    - 이를 통해 기능 추가/수정 시 영향 범위를 최소화합니다.
-
-2.  **Clear Scope (명확한 범위)**
-    - `src/components`는 **전역적(Global)**으로 사용되는 UI 요소만 포함합니다.
-    - 특정 기능에만 쓰이는 UI는 `features` 또는 해당 도구 폴더(`app/tools/_components`)에 위치시킵니다.
-
-3.  **Tool Isolation (도구의 독립성)**
-    - `app/tools` 내의 각 도구는 가능한 한 독립적인 컴포넌트와 서비스를 가지도록 설계하여, 도구 간의 의존성을 줄입니다.
+1.  **Vertical Slicing**
+    - Code related to specific features (e.g., charts for a specific report) is grouped in `/features` to increase cohesion.
+2.  **Clear Scope**
+    - `components/ui` contains only globally reusable UI elements. Feature-specific UI resides in the respective feature folder.

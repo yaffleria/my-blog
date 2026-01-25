@@ -1,10 +1,6 @@
 import Link from 'next/link'
 
-interface DisclaimerProps {
-  isEnglish?: boolean
-}
-
-export default function Disclaimer({ isEnglish = true }: DisclaimerProps) {
+export default function Disclaimer() {
   return (
     <aside className="my-8 border-l-2 border-gray-300 pl-4 text-xs text-gray-500 dark:border-gray-700 dark:text-gray-400">
       <p className="mb-1 font-semibold text-gray-900 dark:text-gray-100">Disclaimer</p>

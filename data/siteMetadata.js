@@ -11,7 +11,7 @@ const siteMetadata = {
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/charlotte.jpg`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/charlotte.jpg`,
   email: 'yaffleria@gmail.com',
-  // github: 'https://github.com/yaffleria', // 비활성화: 개인정보 최소화
+  // github: 'https://github.com/yaffleria', // disabled: minimize personal info
   x: 'https://x.com/charlotteprism',
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
@@ -37,7 +37,7 @@ const siteMetadata = {
     //   posthogProjectApiKey: '', // e.g. 123e4567-e89b-12d3-a456-426614174000
     // },
   },
-  // Newsletter 기능 비활성화 - API 연동 필요
+  // Newsletter disabled - requires API integration
   // newsletter: {
   //   // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive
   //   // Please add your .env file and modify it according to your selection
@@ -70,7 +70,7 @@ const siteMetadata = {
   //     // example: https://giscus.app/themes/custom_example.css
   //     themeURL: '',
   //     // This corresponds to the `data-lang="en"` in giscus's configurations
-  //     lang: 'ko',
+  //     lang: 'en',
   //   },
   // },
   search: {

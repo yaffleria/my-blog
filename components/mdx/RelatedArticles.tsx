@@ -30,7 +30,7 @@ const iconMap = {
   forecast: TrendingUp,
 }
 
-export default function RelatedArticles({ articles, title = '관련 글' }: RelatedArticlesProps) {
+export default function RelatedArticles({ articles, title = 'Read More' }: RelatedArticlesProps) {
   return (
     <div className="not-prose my-6 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800/50">
       <div className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-gray-700 dark:text-gray-300">

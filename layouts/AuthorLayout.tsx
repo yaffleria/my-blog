@@ -11,8 +11,6 @@ interface Props {
 
 export default function AuthorLayout({ children, content }: Props) {
   const { name, avatar, occupation, company, email, twitter, github, path } = content
-  const isEnglish = path?.startsWith('authors/en/') || path?.startsWith('en/')
-
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -43,7 +41,7 @@ export default function AuthorLayout({ children, content }: Props) {
           </div>
           <div className="prose dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2">
             {children}
-            <Disclaimer isEnglish={isEnglish} />
+            <Disclaimer />
           </div>
         </div>
       </div>

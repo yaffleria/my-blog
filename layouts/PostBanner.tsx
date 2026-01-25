@@ -24,8 +24,6 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
     images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
   const decodedTitle = decodeHtmlEntities(title)
 
-  const isEnglish = path.startsWith('blog/en/') || path.startsWith('en/')
-
   return (
     <SectionContainer>
       <ScrollTop />
@@ -44,7 +42,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             </div>
           </div>
           <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
-          <Disclaimer isEnglish={isEnglish} />
+          <Disclaimer />
           <footer>
             <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
               {prev && prev.path && (

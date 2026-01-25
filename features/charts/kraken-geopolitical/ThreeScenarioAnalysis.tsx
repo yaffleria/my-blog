@@ -122,7 +122,7 @@ const TEXTS = {
   },
 }
 
-export default function ThreeScenarioAnalysis({ locale = 'ko' }: ThreeScenarioAnalysisProps) {
+export default function ThreeScenarioAnalysis({ locale = 'en' }: ThreeScenarioAnalysisProps) {
   const [selected, setSelected] = useState<'positive' | 'negative' | 'neutral'>('positive')
   const t = TEXTS[locale]
   const scenarios: Scenario[] = [

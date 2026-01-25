@@ -112,7 +112,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label, l
 }
 
 export default function GlobalDefenseSpendingChart({
-  locale = 'ko',
+  locale = 'en',
 }: GlobalDefenseSpendingChartProps) {
   const t = TEXTS[locale]
   const data = baseData.map((d) => ({
